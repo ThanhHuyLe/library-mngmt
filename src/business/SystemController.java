@@ -35,36 +35,6 @@ public class SystemController implements ControllerInterface {
     @FXML private TableView BookStatusTable;
 	@FXML private Text statusCheckout;
 
-    public class BookStatus {
-    	private final String memberID;
-    	private final String isbn;
-    	private final LocalDate checkoutDate;
-    	private final LocalDate dueDate;
-
-    	public BookStatus(String memberID, String isbn, LocalDate checkoutDate, LocalDate dueDate) {
-    		this.memberID = memberID;
-    		this.isbn = isbn;
-    		this.checkoutDate = checkoutDate;
-    		this.dueDate = dueDate;
-    	}
-
-		public String getMemberID() {
-			return memberID;
-		}
-
-		public String getIsbn() {
-			return isbn;
-		}
-
-		public LocalDate getCheckoutDate() {
-			return checkoutDate;
-		}
-
-		public LocalDate getDueDate() {
-			return dueDate;
-		}
-    }
-
 	@Override
 	public void login(String id, String password) throws LoginException {
 		DataAccess da = new DataAccessFacade();
@@ -112,20 +82,12 @@ public class SystemController implements ControllerInterface {
 			Book book = da.readBooksMap().get(isbn);
 			if (!book.isAvailable())
 				throw new LibrarySystemException("The book is not available");
-			final ObservableList<BookStatus> data = FXCollections.observableArrayList(
-				    new BookStatus(id, isbn, LocalDate.now(), LocalDate.now().plusDays(book.getMaxCheckoutLength()))
-			);
-			memberCol.setCellValueFactory(
-	                new PropertyValueFactory<BookStatus, String>("memberID"));
-
-	        isbnCol.setCellValueFactory(
-	                new PropertyValueFactory<BookStatus, String>("isbn"));
-
-	        checkoutDateCol.setCellValueFactory(
-	                new PropertyValueFactory<BookStatus, String>("checkoutDate"));
-
-	        dueDateCol.setCellValueFactory(
-	                new PropertyValueFactory<BookStatus, String>("dueDate"));
+			RecordEntry newEntry = new RecordEntry(id, isbn, LocalDate.now(), LocalDate.now().plusDays(book.getMaxCheckoutLength()));
+			final ObservableList<RecordEntry> data = FXCollections.observableArrayList(newEntry);
+			memberCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("memberID"));
+			isbnCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("isbn"));
+			checkoutDateCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("checkoutDate"));
+			dueDateCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("dueDate"));
 
 	        BookStatusTable.setItems(data);
 	        statusCheckout.setText("");
