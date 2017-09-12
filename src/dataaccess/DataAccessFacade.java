@@ -145,4 +145,14 @@ public class DataAccessFacade implements DataAccess {
 		private static final long serialVersionUID = 5399827794066637059L;
 	}
 	
+	@Override
+	public void saveNewBook(Book book) {
+		HashMap<String, Book> mems = readBooksMap();
+		String isbn = book.getIsbn();
+		mems.put(isbn, book);
+		System.out.println(book);
+		System.out.println(book.getAuthors());
+		saveToStorage(StorageType.BOOKS, mems);
+	}
+	
 }

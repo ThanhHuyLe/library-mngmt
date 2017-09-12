@@ -25,25 +25,34 @@ import ui.Start;
 
 public class SystemController implements ControllerInterface {
 	public static Auth currentAuth = null;
-    @FXML private Button checkBtn;
-    @FXML private TextField memberIDText;
-    @FXML private TextField isbnText;
-    @FXML private TableColumn memberCol;
-    @FXML private TableColumn isbnCol;
-    @FXML private TableColumn checkoutDateCol;
-    @FXML private TableColumn dueDateCol;
-    @FXML private TableView BookStatusTable;
-	@FXML private Text statusCheckout;
+	@FXML
+	private Button checkBtn;
+	@FXML
+	private TextField memberIDText;
+	@FXML
+	private TextField isbnText;
+	@FXML
+	private TableColumn memberCol;
+	@FXML
+	private TableColumn isbnCol;
+	@FXML
+	private TableColumn checkoutDateCol;
+	@FXML
+	private TableColumn dueDateCol;
+	@FXML
+	private TableView BookStatusTable;
+	@FXML
+	private Text statusCheckout;
 
 	@Override
 	public void login(String id, String password) throws LoginException {
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, User> map = da.readUserMap();
-		if(!map.containsKey(id)) {
+		if (!map.containsKey(id)) {
 			throw new LoginException("ID " + id + " not found");
 		}
 		String passwordFound = map.get(id).getPassword();
-		if(!passwordFound.equals(password)) {
+		if (!passwordFound.equals(password)) {
 			throw new LoginException("Password incorrect");
 		}
 		currentAuth = map.get(id).getAuthorization();
@@ -82,17 +91,39 @@ public class SystemController implements ControllerInterface {
 			Book book = da.readBooksMap().get(isbn);
 			if (!book.isAvailable())
 				throw new LibrarySystemException("The book is not available");
-			RecordEntry newEntry = new RecordEntry(id, isbn, LocalDate.now(), LocalDate.now().plusDays(book.getMaxCheckoutLength()));
+			RecordEntry newEntry = new RecordEntry(id, isbn, LocalDate.now(),
+					LocalDate.now().plusDays(book.getMaxCheckoutLength()));
 			final ObservableList<RecordEntry> data = FXCollections.observableArrayList(newEntry);
 			memberCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("memberID"));
 			isbnCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("isbn"));
 			checkoutDateCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("checkoutDate"));
 			dueDateCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("dueDate"));
 
-	        BookStatusTable.setItems(data);
-	        statusCheckout.setText("");
+			BookStatusTable.setItems(data);
+			statusCheckout.setText("");
 		} catch (Exception e) {
 			statusCheckout.setText(e.getMessage());
 		}
-	 }
+	}
+
+	@Override
+	public void addMember(LibraryMember member) {
+		DataAccess da = new DataAccessFacade();
+		da.saveNewMember(member);
+
+	}
+
+	@Override
+	public void addBook(Book book) {
+		DataAccess da = new DataAccessFacade();
+		da.saveNewBook(book);
+
+	}
+
+	@Override
+	public Book getBook(String isbn) {
+		DataAccess da = new DataAccessFacade();
+		Book book = da.readBooksMap().get(isbn);
+		return book;
+	}
 }
