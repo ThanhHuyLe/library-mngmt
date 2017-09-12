@@ -32,7 +32,7 @@ public class SystemController implements ControllerInterface {
     @FXML private TableColumn isbnCol;
     @FXML private TableColumn checkoutDateCol;
     @FXML private TableColumn dueDateCol;
-    @FXML private TableView bookStatusTable;
+    @FXML private TableView BookStatusTable;
 	@FXML private Text statusCheckout;
 
     public class BookStatus {
@@ -127,7 +127,7 @@ public class SystemController implements ControllerInterface {
 	        dueDateCol.setCellValueFactory(
 	                new PropertyValueFactory<BookStatus, String>("dueDate"));
 
-	        bookStatusTable.setItems(data);
+	        BookStatusTable.setItems(data);
 	        statusCheckout.setText("");
 		} catch (Exception e) {
 			statusCheckout.setText(e.getMessage());

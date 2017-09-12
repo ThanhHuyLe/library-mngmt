@@ -24,7 +24,7 @@
       <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" />
    </rowConstraints>
    <children>
-      <Label text="Check Book Available">
+      <Label text="Check Book Available" GridPane.halignment="CENTER">
          <padding>
             <Insets left="20.0" top="20.0" />
          </padding>
@@ -47,13 +47,13 @@
             <Insets left="60.0" right="40.0" top="20.0" />
          </padding>
          <children>
-            <Label text="Member ID" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+            <Label prefHeight="27.0" prefWidth="102.0" text="Member ID" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <TextField fx:id="memberIDText" GridPane.columnIndex="3" />
-            <Label text="ISBN" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label text="ISBN  " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -63,7 +63,7 @@
       </GridPane>
       <Button fx:id="reset" mnemonicParsing="false" text="Reset" GridPane.rowIndex="4">
          <GridPane.margin>
-            <Insets left="610.0" />
+            <Insets left="615.0" />
          </GridPane.margin>
       </Button>
       <Button fx:id="checkBtn" mnemonicParsing="false" onAction="#checkoutBookAction" text="Check" GridPane.rowIndex="4">
@@ -73,19 +73,19 @@
       </Button>
       <HBox alignment="CENTER" pickOnBounds="false" prefHeight="71.0" prefWidth="700.0" GridPane.rowIndex="6">
          <children>
-            <TableView fx:id="bookStatusTable" prefHeight="115.0" prefWidth="600.0" scaleShape="false">
+            <TableView fx:id="BookStatusTable" prefHeight="180.0" prefWidth="623.0" scaleShape="false">
               <columns>
                 <TableColumn fx:id="memberCol" prefWidth="135.0" text="Member ID" />
                 <TableColumn fx:id="isbnCol" prefWidth="149.0" text="ISBN" />
                   <TableColumn fx:id="checkoutDateCol" prefWidth="161.0" text="Checkout Date" />
-                  <TableColumn fx:id="dueDateCol" prefWidth="154.0" text="Due Date" />
+                  <TableColumn fx:id="dueDateCol" prefWidth="177.0" text="Due Date" />
               </columns>
             </TableView>
          </children>
       </HBox>
-      <Button fx:id="backBtn" mnemonicParsing="false" text="&lt;= Back to Main" GridPane.rowIndex="4">
+      <Button fx:id="backBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="&lt;= Back to Main" GridPane.rowIndex="4">
          <GridPane.margin>
-            <Insets left="20.0" />
+            <Insets left="37.0" />
          </GridPane.margin>
       </Button>
       <Text fx:id="statusCheckout" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
