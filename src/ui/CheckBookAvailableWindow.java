@@ -1,8 +1,11 @@
 package ui;
 import java.io.IOException;
 
+import business.ControllerInterface;
+import business.SystemController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -20,6 +23,7 @@ import javafx.stage.Stage;
 public class CheckBookAvailableWindow extends Stage implements LibWindow {
 		public static final CheckBookAvailableWindow INSTANCE = new CheckBookAvailableWindow();
 	    private GridPane rootLayout;
+
 		private boolean isInitialized = false;
 		public boolean isInitialized() {
 			return isInitialized;
@@ -32,7 +36,9 @@ public class CheckBookAvailableWindow extends Stage implements LibWindow {
 
 		public void init() {
 			try{
+    			ControllerInterface c = new SystemController();
 				FXMLLoader loader = new FXMLLoader();
+				loader.setController(c);
 	            loader.setLocation(CheckBookAvailableWindow.class.getResource("/ui/checkBookAvailable.fxml"));
 	            rootLayout = (GridPane) loader.load();
 
@@ -40,7 +46,7 @@ public class CheckBookAvailableWindow extends Stage implements LibWindow {
 	            Scene scene = new Scene(rootLayout);
 	            scene.getStylesheets().add(getClass().getResource("library.css").toExternalForm());
 		        setScene(scene);
-			} catch (IOException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

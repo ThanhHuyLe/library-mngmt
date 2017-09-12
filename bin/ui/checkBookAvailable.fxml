@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<GridPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane prefHeight="450.0" prefWidth="700.0" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -18,7 +18,10 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
       <RowConstraints />
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="180.0" />
+      <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" />
    </rowConstraints>
    <children>
       <Label text="Check Book Available">
@@ -49,13 +52,13 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="memberID" GridPane.columnIndex="3" />
+            <TextField fx:id="memberIDText" GridPane.columnIndex="3" />
             <Label text="ISBN" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="isbn" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="isbnText" GridPane.columnIndex="3" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Button fx:id="reset" mnemonicParsing="false" text="Reset" GridPane.rowIndex="4">
@@ -63,22 +66,14 @@
             <Insets left="610.0" />
          </GridPane.margin>
       </Button>
-      <Button fx:id="checkBtn" mnemonicParsing="false" text="Check" GridPane.rowIndex="4">
+      <Button fx:id="checkBtn" mnemonicParsing="false" onAction="#checkoutBookAction" text="Check" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets left="520.0" />
          </GridPane.margin>
       </Button>
-      <Label text="Book Status" GridPane.rowIndex="5">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <padding>
-            <Insets left="20.0" />
-         </padding>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+      <HBox alignment="CENTER" pickOnBounds="false" prefHeight="71.0" prefWidth="700.0" GridPane.rowIndex="6">
          <children>
-            <TableView prefHeight="30.0" prefWidth="600.0">
+            <TableView fx:id="bookStatusTable" prefHeight="115.0" prefWidth="600.0" scaleShape="false">
               <columns>
                 <TableColumn fx:id="memberCol" prefWidth="135.0" text="Member ID" />
                 <TableColumn fx:id="isbnCol" prefWidth="149.0" text="ISBN" />
@@ -93,5 +88,6 @@
             <Insets left="20.0" />
          </GridPane.margin>
       </Button>
+      <Text fx:id="statusCheckout" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
    </children>
 </GridPane>
