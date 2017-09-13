@@ -11,8 +11,8 @@ import business.*;
 public class TestData {
 	List<LibraryMember> members = new ArrayList<LibraryMember>();
 	@SuppressWarnings("serial")
-	
-	
+
+
 	List<Address> addresses = new ArrayList<Address>() {
 		{
 			add(new Address("101 S. Main", "Fairfield", "IA", "52556"));
@@ -35,9 +35,9 @@ public class TestData {
 			add(new Author("Sarah", "Connor", "123-422-2663", addresses.get(3), "Known for her clever style."));
 		}
 	};
-	
-	
-	
+
+
+
 	@SuppressWarnings("serial")
 	List<Book> allBooks = new ArrayList<Book>() {
 		{
@@ -45,11 +45,11 @@ public class TestData {
 			add(new Book("28-12331", "Antartica", 7, Arrays.asList(allAuthors.get(2))));
 			add(new Book("99-22223", "Thinking Java", 21, Arrays.asList(allAuthors.get(3))));
 			add(new Book("48-56882", "Jimmy's First Day of School", 7, Arrays.asList(allAuthors.get(4))));
-			
+
 		}
 	};
-	
-	
+
+
 
 	@SuppressWarnings("serial")
 	List<User> allUsers = new ArrayList<User>() {
@@ -59,7 +59,7 @@ public class TestData {
 			add(new User("103", "111", Auth.BOTH));
 		}
 	};
-	
+
 	public static void main(String[] args) {
 		TestData td = new TestData();
 		td.bookData();
@@ -79,31 +79,32 @@ public class TestData {
 		allBooks.get(2).addCopy();
 		DataAccessFacade.loadBookMap(allBooks);
 	}
-	
+
 	public void userData() {
 		DataAccessFacade.loadUserMap(allUsers);
 	}
-	
-	
-	
+
+
+
 	//create library members
-	
+
 	public void libraryMemberData() {
-		LibraryMember libraryMember = new LibraryMember("1001", "Andy", "Rogers", "641-223-2211", addresses.get(4));
+		List<RecordEntry> record = new ArrayList<RecordEntry>();
+		LibraryMember libraryMember = new LibraryMember("1001", "Andy", "Rogers", "641-223-2211", addresses.get(4), record);
 		members.add(libraryMember);
-		libraryMember = new LibraryMember("1002", "Drew", "Stevens", "702-998-2414", addresses.get(5));
+		libraryMember = new LibraryMember("1002", "Drew", "Stevens", "702-998-2414", addresses.get(5), record);
 		members.add(libraryMember);
-		
-		libraryMember = new LibraryMember("1003", "Sarah", "Eagleton", "451-234-8811", addresses.get(6));
+
+		libraryMember = new LibraryMember("1003", "Sarah", "Eagleton", "451-234-8811", addresses.get(6), record);
 		members.add(libraryMember);
-		
-		libraryMember = new LibraryMember("1004", "Ricardo", "Montalbahn", "641-472-2871", addresses.get(7));
+
+		libraryMember = new LibraryMember("1004", "Ricardo", "Montalbahn", "641-472-2871", addresses.get(7), record);
 		members.add(libraryMember);
-		
+
 		DataAccessFacade.loadMemberMap(members);
-		
-		
+
+
 	}
-		
-	
+
+
 }

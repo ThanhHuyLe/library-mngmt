@@ -1,8 +1,13 @@
 package business;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class RecordEntry {
+public class RecordEntry implements Serializable{
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -6456884726468548214L;
 	private final String memberID;
 	private final String isbn;
 	private final LocalDate checkoutDate;

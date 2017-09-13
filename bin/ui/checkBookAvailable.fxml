@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<GridPane prefHeight="450.0" prefWidth="700.0" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:controller="business.CheckoutController" fx:id="rootLayout" prefHeight="450.0" prefWidth="700.0" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -83,9 +83,9 @@
             </TableView>
          </children>
       </HBox>
-      <Button fx:id="backBtn" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" text="&lt;= Back to Main" GridPane.rowIndex="4">
+      <Button fx:id="backBtn" mnemonicParsing="false" prefHeight="27.0" prefWidth="134.0" text="&lt;= Back to Main" GridPane.rowIndex="4">
          <GridPane.margin>
-            <Insets left="37.0" />
+            <Insets left="40.0" />
          </GridPane.margin>
       </Button>
       <Text fx:id="statusCheckout" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" />

@@ -2,6 +2,7 @@ package business;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import dataaccess.DataAccess;
@@ -9,10 +10,11 @@ import dataaccess.DataAccessFacade;
 
 final public class LibraryMember extends Person implements Serializable {
 	private String memberId;
-	private List<RecordEntry> record;
-	public LibraryMember(String memberId, String fname, String lname, String tel,Address add) {
+	private List<RecordEntry> record = new ArrayList<RecordEntry>();
+	public LibraryMember(String memberId, String fname, String lname, String tel,Address add, List<RecordEntry> record) {
 		super(fname,lname, tel, add);
 		this.memberId = memberId;
+		this.record = record;
 	}
 
 
@@ -20,7 +22,16 @@ final public class LibraryMember extends Person implements Serializable {
 		return memberId;
 	}
 
+	public List<RecordEntry> getRecord() {
+		if (record == null) {
+			record = new ArrayList<RecordEntry>();
+		}
+		return record;
+	}
 
+	public void setRecord(List<RecordEntry> record) {
+		this.record = record;
+	}
 
 	@Override
 	public String toString() {
