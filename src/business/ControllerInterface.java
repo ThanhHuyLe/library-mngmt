@@ -17,4 +17,6 @@ public interface ControllerInterface {
 	public void addBook(Book book);
 
 	public Book getBook(String isbn);
+
+	public List<Author> allAuthors();
 }

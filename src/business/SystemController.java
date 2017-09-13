@@ -82,29 +82,30 @@ public class SystemController implements ControllerInterface {
 		if (!retval.contains(id))
 			throw new LibrarySystemException("Member ID is not found");
 		retval.addAll(da.readBooksMap().keySet());
-        LibraryMember member = da.readMemberMap().get(id);
-        List<RecordEntry> record = member.getRecord();
+		LibraryMember member = da.readMemberMap().get(id);
+		List<RecordEntry> record = member.getRecord();
 		if (!retval.contains(isbn))
 			throw new LibrarySystemException("The book with isbn " + isbn + " is not available");
 		Book book = da.readBooksMap().get(isbn);
 		boolean memberBorrow = false;
-		for (RecordEntry entry: record) {
+		for (RecordEntry entry : record) {
 			if (entry.getIsbn().equals(isbn))
 				memberBorrow = true;
- 		}
+		}
 		if (!book.isAvailable() || memberBorrow)
 			throw new LibrarySystemException("The book with isbn " + isbn + " is not available");
 
-		RecordEntry newEntry = new RecordEntry(id, isbn, LocalDate.now(), LocalDate.now().plusDays(book.getMaxCheckoutLength()));
-        record.add(newEntry);
-        member.setRecord(record);
-        da.updateMember(member);
+		RecordEntry newEntry = new RecordEntry(id, isbn, LocalDate.now(),
+				LocalDate.now().plusDays(book.getMaxCheckoutLength()));
+		record.add(newEntry);
+		member.setRecord(record);
+		da.updateMember(member);
 
-        BookCopy copy = book.getNextAvailableCopy();
-        copy.changeAvailability();
-        book.updateCopies(copy);
-        da.updateBook(book);
-        return record;
+		BookCopy copy = book.getNextAvailableCopy();
+		copy.changeAvailability();
+		book.updateCopies(copy);
+		da.updateBook(book);
+		return record;
 	}
 
 	@Override
@@ -126,5 +127,12 @@ public class SystemController implements ControllerInterface {
 		DataAccess da = new DataAccessFacade();
 		Book book = da.readBooksMap().get(isbn);
 		return book;
+	}
+
+	@Override
+	public List<Author> allAuthors() {
+		DataAccess da = new DataAccessFacade();
+		List<Author> authors = new ArrayList<Author>(da.readAuthorMap().values());
+		return authors;
 	}
 }

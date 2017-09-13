@@ -20,7 +20,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
    </rowConstraints>
    <children>
-      <Label text="Check Member Record">
+   <Label text="Check Member Record">
          <padding>
             <Insets left="20.0" top="20.0" />
          </padding>

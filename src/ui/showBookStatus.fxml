@@ -20,14 +20,14 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
    </rowConstraints>
    <children>
-      <Label text="Show Book Status">
+     <!--  <Label text="Show Book Status">
          <padding>
             <Insets left="20.0" top="20.0" />
          </padding>
          <font>
             <Font size="36.0" />
          </font>
-      </Label>
+      </Label> -->
       <GridPane prefHeight="93.0" prefWidth="700.0" GridPane.rowIndex="2">
         <columnConstraints>
           <ColumnConstraints />

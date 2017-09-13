@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.*?>
 
-<GridPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.BookController">
+<GridPane prefHeight="450.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="business.BookController">
   <children>
     <!-- <Label text="Add Book">
          <padding>
@@ -38,7 +38,7 @@
                 <Insets fx:id="x2" />
               </HBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" prefWidth="56.0" text="...">
+            <Button mnemonicParsing="false" onAction="#selectAuthor" prefWidth="56.0" text="...">
               <HBox.margin>
                 <Insets left="15.0" />
               </HBox.margin>
@@ -47,11 +47,11 @@
         </HBox>
         <Label font="$x1" text="Number of copies" GridPane.columnIndex="2" GridPane.rowIndex="5" />
         <TextField id="maxCheckoutLength" fx:id="copyNum" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Label prefHeight="29.0" prefWidth="196.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Label>
+        <Label prefHeight="29.0" prefWidth="196.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+          <font>
+            <Font size="24.0" />
+          </font>
+        </Label>
       </children>
       <columnConstraints>
         <ColumnConstraints />
@@ -69,7 +69,7 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
     <Button mnemonicParsing="false" onAction="#resetBook" text="Reset" GridPane.rowIndex="3">
@@ -87,11 +87,11 @@
         <Insets left="58.0" />
       </GridPane.margin>
     </Button>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="701.0" text="Add New Book">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
+    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="701.0" text="Add New Book">
+      <font>
+        <Font size="36.0" />
+      </font>
+    </Label>
   </children>
   <columnConstraints>
     <ColumnConstraints />
