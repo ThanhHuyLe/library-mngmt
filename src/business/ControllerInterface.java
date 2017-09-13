@@ -11,4 +11,10 @@ public interface ControllerInterface {
 	public List<String> allMemberIds();
 	public List<String> allBookIds();
 	public List<RecordEntry> getBookAvailable(String id, String isbn) throws LibrarySystemException;
+
+	public void addMember(LibraryMember member);
+
+	public void addBook(Book book);
+
+	public Book getBook(String isbn);
 }

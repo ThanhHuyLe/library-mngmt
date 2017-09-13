@@ -13,4 +13,5 @@ public interface DataAccess {
 	public void updateMember(LibraryMember member);
 	public void saveNewMember(LibraryMember member);
 	public void updateBook(Book book);
+	public void saveNewBook(Book book);
 }
