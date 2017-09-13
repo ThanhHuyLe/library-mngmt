@@ -76,33 +76,35 @@ public class SystemController implements ControllerInterface {
 
 	@Override
 	public List<RecordEntry> getBookAvailable(String id, String isbn) throws LibrarySystemException {
-		try {
-			String id = memberIDText.getText();
-			String isbn = isbnText.getText();
-			DataAccess da = new DataAccessFacade();
-			List<String> retval = new ArrayList<>();
-			retval.addAll(da.readMemberMap().keySet());
-			if (!retval.contains(id))
-				throw new LibrarySystemException("Member ID is not found");
-			retval.addAll(da.readBooksMap().keySet());
-			if (!retval.contains(isbn))
-				throw new LibrarySystemException("The book is not available");
-			Book book = da.readBooksMap().get(isbn);
-			if (!book.isAvailable())
-				throw new LibrarySystemException("The book is not available");
-			RecordEntry newEntry = new RecordEntry(id, isbn, LocalDate.now(),
-					LocalDate.now().plusDays(book.getMaxCheckoutLength()));
-			final ObservableList<RecordEntry> data = FXCollections.observableArrayList(newEntry);
-			memberCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("memberID"));
-			isbnCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("isbn"));
-			checkoutDateCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("checkoutDate"));
-			dueDateCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("dueDate"));
+		DataAccess da = new DataAccessFacade();
+		List<String> retval = new ArrayList<>();
+		retval.addAll(da.readMemberMap().keySet());
+		if (!retval.contains(id))
+			throw new LibrarySystemException("Member ID is not found");
+		retval.addAll(da.readBooksMap().keySet());
+        LibraryMember member = da.readMemberMap().get(id);
+        List<RecordEntry> record = member.getRecord();
+		if (!retval.contains(isbn))
+			throw new LibrarySystemException("The book with isbn " + isbn + " is not available");
+		Book book = da.readBooksMap().get(isbn);
+		boolean memberBorrow = false;
+		for (RecordEntry entry: record) {
+			if (entry.getIsbn().equals(isbn))
+				memberBorrow = true;
+ 		}
+		if (!book.isAvailable() || memberBorrow)
+			throw new LibrarySystemException("The book with isbn " + isbn + " is not available");
 
-			BookStatusTable.setItems(data);
-			statusCheckout.setText("");
-		} catch (Exception e) {
-			statusCheckout.setText(e.getMessage());
-		}
+		RecordEntry newEntry = new RecordEntry(id, isbn, LocalDate.now(), LocalDate.now().plusDays(book.getMaxCheckoutLength()));
+        record.add(newEntry);
+        member.setRecord(record);
+        da.updateMember(member);
+
+        BookCopy copy = book.getNextAvailableCopy();
+        copy.changeAvailability();
+        book.updateCopies(copy);
+        da.updateBook(book);
+        return record;
 	}
 
 	@Override

@@ -1,15 +1,15 @@
-package ui;
+package business;
 
-import business.Address;
-import business.ControllerInterface;
-import business.LibraryMember;
-import business.LibrarySystemException;
-import business.SystemController;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import ui.Checker;
+import ui.Start;
 
 public class MemberController {
 
@@ -40,9 +40,10 @@ public class MemberController {
 		try {
 
 			Address add = new Address(street.getText(), city.getText(), state.getText(), zip.getText());
+			List<RecordEntry> record = new ArrayList<RecordEntry>();
 			Checker.addressValidation(add);
 			LibraryMember member = new LibraryMember(memberId.getText(), fname.getText(), lname.getText(),
-					tel.getText(), add);
+					tel.getText(), add, record);
 			Checker.memberValidation(member);
 			ControllerInterface c = new SystemController();
 			c.addMember(member);

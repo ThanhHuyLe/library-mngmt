@@ -45,8 +45,8 @@ public class Start extends Application {
 		AddBookWindow.INSTANCE,
 		AddMemberWindow.INSTANCE,
 		AddCopyWindow.INSTANCE,
-		CheckBookAvailableWindow.INSTANCE,
-		CheckBookAvailableWindow.INSTANCE,
+		CheckoutBookWindow.INSTANCE,
+		CheckoutBookWindow.INSTANCE,
 		CheckMemberRecordWindow.INSTANCE
 	};
 
@@ -100,9 +100,9 @@ public class Start extends Application {
 		MenuItem allMembers = new MenuItem("All Members");
 		showMenu.getItems().addAll(bookStatus, allBooks, allMembers);
 
-		Menu checkMenu = new Menu("Check");
-		MenuItem bookAvailable = new MenuItem("Book Available");
-		MenuItem memberRecord = new MenuItem("Member Record");
+		Menu checkMenu = new Menu("Implement");
+		MenuItem bookAvailable = new MenuItem("Checkout Book");
+		MenuItem memberRecord = new MenuItem("Print Member Record");
 		checkMenu.getItems().addAll(bookAvailable, memberRecord);
 
 		Menu authorMenu = new Menu("Author");
@@ -208,10 +208,10 @@ public class Start extends Application {
             @Override
             public void handle(ActionEvent e) {
             	hideAllWindows();
-    			if(!CheckBookAvailableWindow.INSTANCE.isInitialized()) {
-    				CheckBookAvailableWindow.INSTANCE.init();
+    			if(!CheckoutBookWindow.INSTANCE.isInitialized()) {
+    				CheckoutBookWindow.INSTANCE.init();
     			}
-    			CheckBookAvailableWindow.INSTANCE.show();
+    			CheckoutBookWindow.INSTANCE.show();
             }
         });
 

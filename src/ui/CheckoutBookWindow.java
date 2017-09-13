@@ -36,8 +36,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class CheckBookAvailableWindow extends Stage implements LibWindow {
-		public static final CheckBookAvailableWindow INSTANCE = new CheckBookAvailableWindow();
+public class CheckoutBookWindow extends Stage implements LibWindow {
+		public static final CheckoutBookWindow INSTANCE = new CheckoutBookWindow();
 	    private GridPane rootLayout;
 
 		private boolean isInitialized = false;
@@ -48,12 +48,12 @@ public class CheckBookAvailableWindow extends Stage implements LibWindow {
 			isInitialized = val;
 		}
 
-		private CheckBookAvailableWindow() {}
+		private CheckoutBookWindow() {}
 
 		public void init() {
 			try{
     			FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(CheckBookAvailableWindow.class.getResource("/ui/checkBookAvailable.fxml"));
+	            loader.setLocation(CheckoutBookWindow.class.getResource("/ui/checkBookAvailable.fxml"));
 	            rootLayout = (GridPane) loader.load();
 
 	            // Show the scene containing the root layout.

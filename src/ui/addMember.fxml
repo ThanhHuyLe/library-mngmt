@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.*?>
 
-<GridPane prefHeight="450.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.MemberController">
+<GridPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.MemberController">
   <children>
     <!-- 		<Label Label text="AddMember">
 			<padding>
@@ -20,41 +20,39 @@
 		</Label> -->
     <GridPane prefHeight="338.0" prefWidth="700.0" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
       <children>
-        <Label text="First Name" GridPane.columnIndex="2" GridPane.rowIndex="2">
+        <Label text="First Name" GridPane.columnIndex="2" GridPane.rowIndex="1">
           <font>
             <Font size="18.0" fx:id="x1" />
           </font>
         </Label>
-        <Label font="$x1" text="Member ID" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <TextField fx:id="memberId" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <TextField fx:id="fname" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-         <Label font="$x1" text="Last Name" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-        <Label font="$x1" text="Street" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-        <Label font="$x1" text="City" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-        <TextField fx:id="lname" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+        <Label font="$x1" text="Member ID" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+        <TextField fx:id="memberId" GridPane.columnIndex="4" />
+        <TextField fx:id="fname" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+         <Label font="$x1" text="Last Name" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+        <Label font="$x1" text="Street" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+        <Label font="$x1" text="City" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+        <TextField fx:id="lname" GridPane.columnIndex="4" GridPane.rowIndex="2" />
 
-        <TextField id="state" fx:id="street" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-        <TextField fx:id="city" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-        <Label font="$x1" text="State" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-        <Label font="$x1" text="Zip code" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-        <Label font="$x1" text="Telephone" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-        <TextField fx:id="state" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-        <TextField fx:id="zip" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-        <TextField fx:id="tel" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-
-        <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <TextField id="state" fx:id="street" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+        <TextField fx:id="city" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+        <Label font="$x1" text="State" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+        <Label font="$x1" text="Zip code" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+        <Label font="$x1" text="Telephone" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+        <TextField fx:id="state" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+        <TextField fx:id="zip" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+        <TextField fx:id="tel" GridPane.columnIndex="4" GridPane.rowIndex="7" />
       </children>
       <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />
         <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="306.0" minWidth="10.0" prefWidth="143.0" />
-        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="457.0" minWidth="10.0" prefWidth="457.0" />
+        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="306.0" minWidth="10.0" prefWidth="143.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="457.0" minWidth="10.0" prefWidth="457.0" />
       </columnConstraints>
       <padding>
         <Insets left="60.0" right="40.0" top="20.0" />
       </padding>
       <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -77,9 +75,14 @@
     </Button>
     <Button mnemonicParsing="false" onAction="#back" text="&lt;= Back to Main" GridPane.rowIndex="3">
       <GridPane.margin>
-        <Insets left="20.0" />
+        <Insets left="58.0" />
       </GridPane.margin>
     </Button>
+      <Label alignment="CENTER" prefHeight="44.0" prefWidth="700.0" text="Add New Member">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
   </children>
   <columnConstraints>
     <ColumnConstraints />

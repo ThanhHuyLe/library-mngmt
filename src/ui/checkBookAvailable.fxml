@@ -83,7 +83,7 @@
             </TableView>
          </children>
       </HBox>
-      <Button fx:id="backBtn" mnemonicParsing="false" prefHeight="27.0" prefWidth="134.0" text="&lt;= Back to Main" GridPane.rowIndex="4">
+      <Button fx:id="backBtn" mnemonicParsing="false" prefHeight="27.0" prefWidth="134.0" text="&lt;= Back to Main" GridPane.rowIndex="4" onAction="#back">
          <GridPane.margin>
             <Insets left="40.0" />
          </GridPane.margin>

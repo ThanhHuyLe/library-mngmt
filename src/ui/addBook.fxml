@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.*?>
 
-<GridPane prefHeight="450.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.BookController">
+<GridPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.BookController">
   <children>
     <!-- <Label text="Add Book">
          <padding>
@@ -17,7 +17,7 @@
             <Font size="36.0" />
          </font>
       </Label> -->
-    <GridPane prefHeight="331.0" prefWidth="700.0" GridPane.rowIndex="2">
+    <GridPane prefHeight="333.0" prefWidth="700.0" GridPane.rowIndex="2">
       <children>
         <Label text="Maximum Checkout Length" GridPane.columnIndex="2" GridPane.rowIndex="4">
           <font>
@@ -30,7 +30,7 @@
         <TextField fx:id="title" prefWidth="299.9998779296875" GridPane.columnIndex="3" GridPane.rowIndex="2" />
         <Label font="$x1" text="ISBN" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
         <TextField fx:id="isbn" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+        <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="1" />
         <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="300.0" GridPane.columnIndex="3" GridPane.margin="$x2" GridPane.rowIndex="3">
           <children>
             <TextField id="author" fx:id="authors" editable="false" prefWidth="236.0">
@@ -47,6 +47,11 @@
         </HBox>
         <Label font="$x1" text="Number of copies" GridPane.columnIndex="2" GridPane.rowIndex="5" />
         <TextField id="maxCheckoutLength" fx:id="copyNum" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Label prefHeight="29.0" prefWidth="196.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
       </children>
       <columnConstraints>
         <ColumnConstraints />
@@ -58,12 +63,13 @@
         <Insets left="60.0" right="40.0" top="20.0" />
       </padding>
       <rowConstraints>
+        <RowConstraints />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
     <Button mnemonicParsing="false" onAction="#resetBook" text="Reset" GridPane.rowIndex="3">
@@ -78,9 +84,14 @@
     </Button>
     <Button mnemonicParsing="false" onAction="#back" text="&lt;= Back to Main" GridPane.rowIndex="3">
       <GridPane.margin>
-        <Insets left="20.0" />
+        <Insets left="58.0" />
       </GridPane.margin>
     </Button>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="701.0" text="Add New Book">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
   </children>
   <columnConstraints>
     <ColumnConstraints />

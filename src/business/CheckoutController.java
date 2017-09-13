@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import ui.Start;
 
 
 public class CheckoutController implements Initializable { // notice this
@@ -29,6 +30,13 @@ public class CheckoutController implements Initializable { // notice this
     @FXML private TableColumn dueDateCol;
     @FXML private TableView BookStatusTable;
 	@FXML private Text statusCheckout;
+
+	@FXML
+	protected void back(ActionEvent e) {
+		Start.hideAllWindows();
+		Start.primStage().show();
+	}
+
 
 	@FXML
 	private void checkoutBookAction(ActionEvent event) throws LibrarySystemException {

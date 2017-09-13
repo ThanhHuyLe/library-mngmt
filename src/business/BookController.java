@@ -1,16 +1,17 @@
-package ui;
+package business;
 
-import business.Book;
-import business.ControllerInterface;
-import business.LibrarySystemException;
-import business.SystemController;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import ui.Checker;
+import ui.Start;
 
-public class BookCopyController {
+public class BookController {
 
 	@FXML
 	private Text msg;
@@ -18,24 +19,31 @@ public class BookCopyController {
 	private TextField isbn;
 
 	@FXML
+	private TextField title;
+	@FXML
+	private TextField authors;
+	@FXML
+	private TextField maxCheckoutLength;
+
+	@FXML
 	private TextField copyNum;
 
 	@FXML
-	protected void addBookCopy(ActionEvent evt) {
+	protected void addBook(ActionEvent evt) {
 		try {
 
-			Checker.bookCopyValidation(isbn.getText(), copyNum.getText());
+			List<Author> authors = new ArrayList<Author>();
+			Checker.bookValidation(isbn.getText(), title.getText(), maxCheckoutLength.getText(), copyNum.getText());
+			Book book = new Book(isbn.getText(), title.getText(), Integer.parseInt(maxCheckoutLength.getText()),
+					authors);
 			ControllerInterface c = new SystemController();
-			Book book = c.getBook(isbn.getText());
-			if (book == null) {
-				throw new LibrarySystemException("Book not found!");
-			}
 			for (int i = 0; i < Integer.parseInt(copyNum.getText()); i++) {
 				book.addCopy();
 			}
-			msg.setFill(Color.GREEN);
-			msg.setText(copyNum.getText() + " copies added successfully!");
+			c.addBook(book);
 			clear();
+			msg.setFill(Color.GREEN);
+			msg.setText("New book added successfully!");
 		} catch (LibrarySystemException ex) {
 			msg.setFill(Color.RED);
 			msg.setText(ex.getMessage());
@@ -55,6 +63,8 @@ public class BookCopyController {
 
 	private void clear() {
 		isbn.setText("");
-		copyNum.setText("");
+		title.setText("");
+		maxCheckoutLength.setText("");
+		authors.setText("");
 	}
 }
