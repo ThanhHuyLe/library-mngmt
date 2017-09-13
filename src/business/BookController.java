@@ -35,15 +35,42 @@ public class BookController {
 	private TextField copyNum;
 
 	@FXML
-	private TableColumn autherIdCol;
+	private TableColumn<Author, String> autherIdCol;
 	@FXML
-	private TableColumn fnameCol;
+	private TableColumn<Author, String> fnameCol;
 	@FXML
-	private TableColumn lnameCol;
+	private TableColumn<Author, String> lnameCol;
 	@FXML
-	private TableColumn telTable;
+	private TableColumn<Author, String> telephoneCol;
 	@FXML
-	private TableView authorTable;
+	private TableView<Author> authorTable;
+
+	@FXML
+	private void getAuthorList() throws LibrarySystemException {
+		try {
+
+			ControllerInterface c = new SystemController();
+			List<Author> authors = c.allAuthors();
+			System.out.println(authors.size());
+			final ObservableList<Author> data = FXCollections.observableArrayList(authors);
+			System.out.println("data="+data.size());
+			authorTable = new TableView<Author>();
+			autherIdCol = new TableColumn<Author, String>("Author ID");
+			fnameCol = new TableColumn<Author, String>("Firstname");
+			lnameCol = new TableColumn<Author, String>("Lastname");
+			telephoneCol = new TableColumn<Author, String>("Telephone");
+
+			/*autherIdCol.setCellValueFactory(new PropertyValueFactory<Author, String>("authorId"));
+			fnameCol.setCellValueFactory(new PropertyValueFactory<Author, String>("firstName"));
+			lnameCol.setCellValueFactory(new PropertyValueFactory<Author, String>("lasttName"));
+			telephoneCol.setCellValueFactory(new PropertyValueFactory<Author, String>("telephone"));
+*/
+			authorTable.setItems(data);
+			msg.setText("");
+		} catch (Exception e) {
+			msg.setText(e.getMessage());
+		}
+	}
 
 	@FXML
 	protected void addBook(ActionEvent evt) {
@@ -100,22 +127,4 @@ public class BookController {
 		authors.setText("");
 	}
 
-	@FXML
-	private void getAuthorList() throws LibrarySystemException {
-		try {
-			ControllerInterface c = new SystemController();
-			List<Author> authors = c.allAuthors();
-			System.out.println(authors.size());
-			final ObservableList<Author> data = FXCollections.observableArrayList(authors);
-			autherIdCol.setCellValueFactory(new PropertyValueFactory<Author, String>("authorId"));
-			fnameCol.setCellValueFactory(new PropertyValueFactory<Author, String>("firstName"));
-			lnameCol.setCellValueFactory(new PropertyValueFactory<Author, String>("lasttName"));
-			telTable.setCellValueFactory(new PropertyValueFactory<Author, String>("telephone"));
-
-			authorTable.setItems(data);
-			msg.setText("");
-		} catch (Exception e) {
-			msg.setText(e.getMessage());
-		}
-	}
 }

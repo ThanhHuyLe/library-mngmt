@@ -20,5 +20,5 @@ public class AuthorController {
 		Start.primStage().show();
 	}
 
-	
+
 }
