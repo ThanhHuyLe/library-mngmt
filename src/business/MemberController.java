@@ -42,10 +42,13 @@ public class MemberController {
 			Address add = new Address(street.getText(), city.getText(), state.getText(), zip.getText());
 			List<RecordEntry> record = new ArrayList<RecordEntry>();
 			Checker.addressValidation(add);
-			LibraryMember member = new LibraryMember(memberId.getText(), fname.getText(), lname.getText(),
+			LibraryMember member = new LibraryMember(memberId.getText().trim(), fname.getText(), lname.getText(),
 					tel.getText(), add, record);
-			Checker.memberValidation(member);
 			ControllerInterface c = new SystemController();
+			if (c.getMember(member.getMemberId()) != null) {
+				throw new LibrarySystemException("Member ID must be unique!");
+			}
+			Checker.memberValidation(member);
 			c.addMember(member);
 			clear();
 			msg.setFill(Color.GREEN);

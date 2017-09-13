@@ -30,7 +30,7 @@
         <TextField fx:id="title" prefWidth="299.9998779296875" GridPane.columnIndex="3" GridPane.rowIndex="2" />
         <Label font="$x1" text="ISBN" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
         <TextField fx:id="isbn" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+        <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="0" />
         <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="300.0" GridPane.columnIndex="3" GridPane.margin="$x2" GridPane.rowIndex="3">
           <children>
             <TextField id="author" fx:id="authors" editable="false" prefWidth="236.0">

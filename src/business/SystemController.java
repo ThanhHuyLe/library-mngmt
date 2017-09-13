@@ -135,4 +135,11 @@ public class SystemController implements ControllerInterface {
 		List<Author> authors = new ArrayList<Author>(da.readAuthorMap().values());
 		return authors;
 	}
+
+	@Override
+	public LibraryMember getMember(String memberId) {
+		DataAccess da = new DataAccessFacade();
+		LibraryMember member = da.readMemberMap().get(memberId);
+		return member;
+	}
 }
