@@ -1,6 +1,7 @@
 package ui;
 
 import business.Address;
+import business.Author;
 import business.Book;
 import business.LibraryMember;
 import business.LibrarySystemException;
@@ -29,6 +30,17 @@ public class Checker {
 		isNumberic(member.getTelephone(), "Phone number must be numeric!");
 
 	}
+
+	public static void authorValidation(Author author) throws LibrarySystemException {
+		if (author.getAuthorId().trim().equals("") || author.getFirstName().trim().equals("")
+				|| author.getLastName().trim().equals("") || author.getTelephone().trim().equals("")  || author.getBio().trim().equals(""))
+			throw new LibrarySystemException("All field must be non-empty!");
+		isNumberic(author.getAuthorId(), "Author ID must be numeric!");
+		zipRule(author.getAddress().getZip());
+		isNumberic(author.getTelephone(), "Phone number must be numeric!");
+
+	}
+
 
 	public static void bookValidation(String isbn, String title, String maxCheckoutLength, String copyNum ) throws LibrarySystemException {
 		if (isbn.trim().equals("") ||title.trim().equals("")||maxCheckoutLength.trim().equals("") ||copyNum.trim().equals(""))

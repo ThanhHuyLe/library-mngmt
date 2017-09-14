@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:id="rootLayout" prefHeight="450.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="business.SelectAuthorController">
+<GridPane fx:id="rootLayout" alignment="TOP_CENTER" prefHeight="450.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="business.SelectAuthorController">
   <children>
     <HBox alignment="CENTER" pickOnBounds="false" GridPane.rowIndex="1">
       <children>
-        <TableView fx:id="authorsTable" prefHeight="180.0" prefWidth="623.0">
+        <TableView fx:id="authorsTable" prefHeight="389.0" prefWidth="623.0">
           <columns>
-            <TableColumn prefWidth="135.0" text="Member ID" fx:id="authorIdCol" />
+            <TableColumn prefWidth="135.0" text="Author ID" fx:id="authorIdCol" />
             <TableColumn prefWidth="149.0" text="Firstname" fx:id="firstnameCol" />
             <TableColumn prefWidth="161.0" text="Lastname" fx:id="lastnameCol" />
             <TableColumn prefWidth="177.0" text="Bio" fx:id="bioCol" />
@@ -21,28 +21,38 @@
         </TableView>
       </children>
     </HBox>
-    <Button id="selectBtn" fx:id="selectAuthors" mnemonicParsing="false" onAction="#passAuthors" text="Select" GridPane.rowIndex="3">
-      <GridPane.margin>
-        <Insets left="520.0" />
-      </GridPane.margin>
-    </Button>
-    <Button fx:id="backBtn" mnemonicParsing="false" onAction="#back" text="Add Author" GridPane.rowIndex="3">
-      <GridPane.margin>
-        <Insets left="40.0" />
-      </GridPane.margin>
-    </Button>
+    <GridPane GridPane.columnIndex="0" GridPane.rowIndex="3">
+      <children>
+        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+          <children>
+            <Button id="selectBtn" mnemonicParsing="false" onAction="#passAuthors" text="Done" />
+          </children>
+        </HBox>
+        <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+          <children>
+            <Button id="backBtn" mnemonicParsing="false" onAction="#addAuthor" text="Add Author" />
+            <Button mnemonicParsing="false" onAction="#reload" text="Reload Data" />
+          </children>
+        </HBox>
+      </children>
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
   </children>
   <columnConstraints>
     <ColumnConstraints />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints />
-    <RowConstraints />
-    <RowConstraints />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" />
-    <RowConstraints />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" />
-    <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="180.0" />
+    <RowConstraints maxHeight="0.0" prefHeight="0.0" />
+    <RowConstraints maxHeight="319.0" prefHeight="288.0" />
+    <RowConstraints maxHeight="31.0" prefHeight="13.0" />
+    <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="28.0" />
+    <RowConstraints maxHeight="0.0" prefHeight="0.0" />
     <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" />
     <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" />
     <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" />

@@ -69,25 +69,31 @@ public class BookController {
 
 	@FXML
 	protected void selectAuthor(ActionEvent evt) {
-		authorList.clear();
-		String authorsName = "";
-		if (!SelectAuthorsWindow.INSTANCE.isInitialized()) {
-			SelectAuthorsWindow.INSTANCE.init();
-		}
-
-		SelectAuthorsWindow.INSTANCE.showAndWait();
-		Author a;
-		// for (Author a : selectedAuthors) {
-		for (int i = 0; i < selectedAuthors.size(); i++) {
-			a = selectedAuthors.get(i);
-			authorsName += a.getFirstName() + " " + a.getLastName();
-			if (i < selectedAuthors.size() - 1) {
-				authorsName += ", ";
+		try {
+			authorList.clear();
+			String authorsName = "";
+			if (!SelectAuthorsWindow.INSTANCE.isInitialized()) {
+				SelectAuthorsWindow.INSTANCE.init();
 			}
-			authorList.add(a);
-		}
 
-		authors.setText(authorsName);
+			SelectAuthorsWindow.INSTANCE.showAndWait();
+			Author a;
+			// for (Author a : selectedAuthors) {
+			if (selectedAuthors == null)
+				throw new LibrarySystemException("please select author!");
+			for (int i = 0; i < selectedAuthors.size(); i++) {
+				a = selectedAuthors.get(i);
+				authorsName += a.getFirstName() + " " + a.getLastName();
+				if (i < selectedAuthors.size() - 1) {
+					authorsName += ", ";
+				}
+				authorList.add(a);
+			}
+
+			authors.setText(authorsName);
+		} catch (LibrarySystemException e) {
+			msg.setText(e.getMessage());
+		}
 
 	}
 

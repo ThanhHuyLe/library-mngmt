@@ -37,6 +37,11 @@ public class DataAccessFacade implements DataAccess {
 		saveToStorage(StorageType.BOOKS, books);
 	}
 
+	public void updateAuthor(Author author) {
+		HashMap<String, Author> authors = readAuthorMap();
+		authors.put(author.getAuthorId(), author);
+		saveToStorage(StorageType.AUTHORS, authors);
+	}
 	public void saveNewMember(LibraryMember member) {
 		HashMap<String, LibraryMember> mems = readMemberMap();
 		String memberId = member.getMemberId();
@@ -182,5 +187,13 @@ public class DataAccessFacade implements DataAccess {
 		HashMap<String, Author> authors = new HashMap<String, Author>();
 		authorList.forEach(author -> authors.put(author.getAuthorId(), author));
 		saveToStorage(StorageType.AUTHORS, authors);
+	}
+
+	@Override
+	public void saveAuthor(Author author) {
+		HashMap<String, Author> mems = readAuthorMap();
+		String authorId = author.getAuthorId();
+		mems.put(authorId, author);
+		saveToStorage(StorageType.AUTHORS, mems);
 	}
 }

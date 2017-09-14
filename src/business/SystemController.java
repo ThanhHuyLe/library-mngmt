@@ -129,10 +129,10 @@ public class SystemController implements ControllerInterface {
 		retval.removeAll(da.readBooksMap().keySet());
 		retval.addAll(da.readMemberMap().keySet());
 		List<RecordEntry> record = new ArrayList<RecordEntry>();
-		for (String id: retval) {
+		for (String id : retval) {
 			LibraryMember member = da.readMemberMap().get(id);
 			List<RecordEntry> temp = member.getRecord();
-			for (RecordEntry rec: temp) {
+			for (RecordEntry rec : temp) {
 				if (rec.getIsbn().equals(isbn)) {
 					record.add(rec);
 				}
@@ -147,7 +147,7 @@ public class SystemController implements ControllerInterface {
 		List<String> retval = new ArrayList<String>();
 		retval.addAll(da.readMemberMap().keySet());
 		List<LibraryMember> result = new ArrayList<LibraryMember>();
-		for (String id: retval) {
+		for (String id : retval) {
 			result.add(da.readMemberMap().get(id));
 		}
 		return result;
@@ -159,14 +159,13 @@ public class SystemController implements ControllerInterface {
 		List<String> retval = new ArrayList<String>();
 		retval.addAll(da.readBooksMap().keySet());
 		List<BookInfo> result = new ArrayList<BookInfo>();
-		for (String isbn: retval) {
+		for (String isbn : retval) {
 			Book book = da.readBooksMap().get(isbn);
 			result.add(new BookInfo(book.getIsbn(), book.getTitle(), Integer.toString(book.getMaxCheckoutLength()),
 					book.authorsToString(), Integer.toString(book.getCopyNums().size())));
 		}
 		return result;
 	}
-
 
 	@Override
 	public void addMember(LibraryMember member) {
@@ -179,7 +178,9 @@ public class SystemController implements ControllerInterface {
 	public void addBook(Book book) {
 		DataAccess da = new DataAccessFacade();
 		da.saveNewBook(book);
-
+		for (Author author : book.getAuthors()) {
+			da.updateAuthor(author);
+		}
 	}
 
 	@Override
@@ -201,5 +202,19 @@ public class SystemController implements ControllerInterface {
 		DataAccess da = new DataAccessFacade();
 		LibraryMember member = da.readMemberMap().get(memberId);
 		return member;
+	}
+
+	@Override
+	public void addAuthor(Author author) {
+		DataAccess da = new DataAccessFacade();
+		da.saveAuthor(author);
+
+	}
+
+	@Override
+	public Author getAuthor(String authorId) {
+		DataAccess da = new DataAccessFacade();
+		Author author = da.readAuthorMap().get(authorId);
+		return author;
 	}
 }

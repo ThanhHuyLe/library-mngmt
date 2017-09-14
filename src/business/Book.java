@@ -24,6 +24,9 @@ final public class Book implements Serializable {
 		this.title = title;
 		this.maxCheckoutLength = maxCheckoutLength;
 		this.authors = Collections.unmodifiableList(authors);
+		for (Author author : authors) {
+			author.addBook(this);
+		}
 		copies = new BookCopy[] { new BookCopy(this, 1, true) };
 
 	}
@@ -120,9 +123,9 @@ final public class Book implements Serializable {
 
 	public String authorsToString() {
 		String result = "";
-		for (Author author: authors) {
+		for (Author author : authors) {
 			result += author.getFirstName() + " " + author.getLastName() + ", ";
 		}
-		return result.substring(0, result.length()-3);
+		return result.substring(0, result.length() - 3);
 	}
 }

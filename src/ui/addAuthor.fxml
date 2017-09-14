@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="TOP_CENTER" prefHeight="550.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="business.AuthorController">
+  <children>
+    <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label text="Firstname" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <Label text="Lastname" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <Label text="Telephone" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+    <Label text="Street" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+    <Label text="City" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+    <Label text="State" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+    <Label text="Zip code" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+    <TextField fx:id="authorId" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="firstname" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+    <TextField fx:id="lastname" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <TextField fx:id="telephone" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <TextField id="state" fx:id="street" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+    <TextField id="state" fx:id="city" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+    <TextField fx:id="state" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+    <TextField fx:id="zip" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    <Label contentDisplay="CENTER" text="Auhor ID" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <TextArea fx:id="bio" prefWidth="200.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+    <Label text="Bio" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+    <HBox alignment="TOP_RIGHT" prefHeight="52.0" prefWidth="293.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="11">
+      <children>
+        <Button mnemonicParsing="false" onAction="#addAuthor" text="Add">
+          <HBox.margin>
+            <Insets left="20.0" right="20.0" />
+          </HBox.margin>
+        </Button>
+        <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#resetAuthor" text="reset">
+          <HBox.margin>
+            <Insets left="20.0" />
+          </HBox.margin>
+        </Button>
+      </children>
+      <GridPane.margin>
+        <Insets top="25.0" fx:id="x1" />
+      </GridPane.margin>
+    </HBox>
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add Author" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <font>
+        <Font size="24.0" />
+      </font>
+    </Text>
+    <HBox alignment="TOP_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.margin="$x1" GridPane.rowIndex="11" />
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="166.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="220.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="21.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="81.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="97.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="27.0" vgrow="ALWAYS" />
+  </rowConstraints>
+</GridPane>

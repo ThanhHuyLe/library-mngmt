@@ -32,4 +32,9 @@ public interface ControllerInterface {
 	public List<LibraryMember> getAllMembers() throws LibrarySystemException;
 
 	public List<BookInfo> getAllBooks() throws LibrarySystemException;
+
+	public void addAuthor(Author author);
+
+	public Author getAuthor(String authorId);
+
 }
