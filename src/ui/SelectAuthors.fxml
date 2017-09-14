@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.*?>
+
+<GridPane fx:id="rootLayout" prefHeight="450.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="business.SelectAuthorController">
+  <children>
+    <HBox alignment="CENTER" pickOnBounds="false" GridPane.rowIndex="1">
+      <children>
+        <TableView fx:id="authorsTable" prefHeight="180.0" prefWidth="623.0">
+          <columns>
+            <TableColumn prefWidth="135.0" text="Member ID" fx:id="authorIdCol" />
+            <TableColumn prefWidth="149.0" text="Firstname" fx:id="firstnameCol" />
+            <TableColumn prefWidth="161.0" text="Lastname" fx:id="lastnameCol" />
+            <TableColumn prefWidth="177.0" text="Bio" fx:id="bioCol" />
+          </columns>
+        </TableView>
+      </children>
+    </HBox>
+    <Button id="selectBtn" fx:id="selectAuthors" mnemonicParsing="false" onAction="#passAuthors" text="Select" GridPane.rowIndex="3">
+      <GridPane.margin>
+        <Insets left="520.0" />
+      </GridPane.margin>
+    </Button>
+    <Button fx:id="backBtn" mnemonicParsing="false" onAction="#back" text="Add Author" GridPane.rowIndex="3">
+      <GridPane.margin>
+        <Insets left="40.0" />
+      </GridPane.margin>
+    </Button>
+  </children>
+  <columnConstraints>
+    <ColumnConstraints />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints />
+    <RowConstraints />
+    <RowConstraints />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+    <RowConstraints />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+    <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="180.0" />
+    <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" />
+    <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" />
+    <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" />
+  </rowConstraints>
+</GridPane>
