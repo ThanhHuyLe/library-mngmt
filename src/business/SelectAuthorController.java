@@ -19,7 +19,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import ui.AddAuthorWindow;
 import ui.SelectAuthorsWindow;
-import ui.Start;
 
 public class SelectAuthorController implements Initializable { // notice this
 	@FXML

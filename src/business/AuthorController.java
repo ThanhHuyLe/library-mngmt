@@ -9,7 +9,6 @@ import javafx.scene.text.Text;
 import ui.AddAuthorWindow;
 import ui.Checker;
 import ui.SelectAuthorsWindow;
-import ui.Start;
 
 public class AuthorController {
 	@FXML
