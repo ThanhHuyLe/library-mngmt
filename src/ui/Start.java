@@ -1,28 +1,16 @@
 package ui;
 
-import java.util.Collections;
-import java.util.List;
-
-import business.ControllerInterface;
-import business.LibraryMember;
-import business.LibrarySystemException;
 import business.SystemController;
 import dataaccess.Auth;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -54,7 +42,7 @@ public class Start extends Application {
 	private static Stage[] allWindows = {
 		LoginWindow.INSTANCE,
 		AllBooksWindow.INSTANCE,
-		AllBooksWindow.INSTANCE,
+		AllMembersWindow.INSTANCE,
 		AddBookWindow.INSTANCE,
 		AddMemberWindow.INSTANCE,
 		AddAuthorWindow.INSTANCE,
@@ -62,7 +50,9 @@ public class Start extends Application {
 		CheckoutBookWindow.INSTANCE,
 		CheckoutBookWindow.INSTANCE,
 		CheckMemberRecordWindow.INSTANCE,
-		SelectAuthorsWindow.INSTANCE
+		SelectAuthorsWindow.INSTANCE,
+		ShowBookStatusWindow.INSTANCE,
+		CheckMemberRecordWindow.INSTANCE
 	};
 
 	public static void hideAllWindows() {

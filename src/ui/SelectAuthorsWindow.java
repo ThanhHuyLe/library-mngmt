@@ -2,7 +2,6 @@ package ui;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SelectAuthorsWindow extends Stage implements LibWindow {

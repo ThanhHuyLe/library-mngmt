@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import ui.Checker;
 import ui.SelectAuthorsWindow;
 import ui.Start;

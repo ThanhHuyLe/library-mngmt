@@ -5,44 +5,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import business.Book;
 import dataaccess.Auth;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
 import dataaccess.User;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
-import javafx.fxml.FXML;
-import ui.Start;
 
 public class SystemController implements ControllerInterface {
 	public static Auth currentAuth = null;
-	@FXML
-	private Button checkBtn;
-	@FXML
-	private TextField memberIDText;
-	@FXML
-	private TextField isbnText;
-	@FXML
-	private TableColumn memberCol;
-	@FXML
-	private TableColumn isbnCol;
-	@FXML
-	private TableColumn checkoutDateCol;
-	@FXML
-	private TableColumn dueDateCol;
-	@FXML
-	private TableView BookStatusTable;
-	@FXML
-	private Text statusCheckout;
 
 	@Override
 	public void login(String id, String password) throws LoginException {
@@ -219,5 +188,14 @@ public class SystemController implements ControllerInterface {
 		DataAccess da = new DataAccessFacade();
 		Author author = da.readAuthorMap().get(authorId);
 		return author;
+	}
+
+	@Override
+	public void addCopy(Book book, int num) {
+		DataAccess da = new DataAccessFacade();
+		for (int i = 0; i <num; i++) {
+			book.addCopy();
+		}
+		da.updateBook(book);
 	}
 }

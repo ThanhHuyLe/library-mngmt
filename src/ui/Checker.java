@@ -2,7 +2,6 @@ package ui;
 
 import business.Address;
 import business.Author;
-import business.Book;
 import business.LibraryMember;
 import business.LibrarySystemException;
 
