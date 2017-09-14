@@ -217,4 +217,13 @@ public class SystemController implements ControllerInterface {
 		Author author = da.readAuthorMap().get(authorId);
 		return author;
 	}
+
+	@Override
+	public void addCopy(Book book, int num) {
+		DataAccess da = new DataAccessFacade();
+		for (int i = 0; i <num; i++) {
+			book.addCopy();
+		}
+		da.updateBook(book);
+	}
 }

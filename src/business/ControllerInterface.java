@@ -36,5 +36,7 @@ public interface ControllerInterface {
 	public void addAuthor(Author author);
 
 	public Author getAuthor(String authorId);
+	
+	public void addCopy(Book book, int num);
 
 }

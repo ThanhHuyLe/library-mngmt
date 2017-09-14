@@ -28,9 +28,7 @@ public class BookCopyController {
 			if (book == null) {
 				throw new LibrarySystemException("Book not found!");
 			}
-			for (int i = 0; i < Integer.parseInt(copyNum.getText()); i++) {
-				book.addCopy();
-			}
+			c.addCopy(book, Integer.parseInt(copyNum.getText().trim()));
 			msg.setFill(Color.GREEN);
 			msg.setText(copyNum.getText() + " copies added successfully!");
 			clear();
