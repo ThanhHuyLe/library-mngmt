@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.*?>
 
-<GridPane prefHeight="450.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="business.BookController">
+<GridPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.BookController">
   <children>
     <!-- <Label text="Add Book">
          <padding>
@@ -25,26 +25,12 @@
           </font>
         </Label>
         <TextField fx:id="maxCheckoutLength" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-        <Label font="$x1" text="Authors" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+        <Label font="$x1" text="Author IDs" GridPane.columnIndex="2" GridPane.rowIndex="3" />
         <Label font="$x1" text="Title" GridPane.columnIndex="2" GridPane.rowIndex="2" />
         <TextField fx:id="title" prefWidth="299.9998779296875" GridPane.columnIndex="3" GridPane.rowIndex="2" />
         <Label font="$x1" text="ISBN" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
         <TextField fx:id="isbn" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-        <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="300.0" GridPane.columnIndex="3" GridPane.margin="$x2" GridPane.rowIndex="3">
-          <children>
-            <TextField id="author" fx:id="authors" editable="false" prefWidth="236.0">
-              <HBox.margin>
-                <Insets fx:id="x2" />
-              </HBox.margin>
-            </TextField>
-            <Button mnemonicParsing="false" onAction="#selectAuthor" prefWidth="56.0" text="...">
-              <HBox.margin>
-                <Insets left="15.0" />
-              </HBox.margin>
-            </Button>
-          </children>
-        </HBox>
+        <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" />
         <Label font="$x1" text="Number of copies" GridPane.columnIndex="2" GridPane.rowIndex="5" />
         <TextField id="maxCheckoutLength" fx:id="copyNum" GridPane.columnIndex="3" GridPane.rowIndex="5" />
         <Label prefHeight="29.0" prefWidth="196.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
@@ -52,12 +38,13 @@
             <Font size="24.0" />
           </font>
         </Label>
+            <TextField fx:id="authors" GridPane.columnIndex="3" GridPane.rowIndex="3" />
       </children>
       <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />
         <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="306.0" minWidth="10.0" prefWidth="242.0" />
-        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="306.0" minWidth="10.0" prefWidth="242.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="306.0" minWidth="10.0" prefWidth="242.0" />
       </columnConstraints>
       <padding>
         <Insets left="60.0" right="40.0" top="20.0" />

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane fx:id="rootLayout" prefHeight="450.0" prefWidth="700.0" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.AllMembersController">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints maxHeight="286.0" minHeight="10.0" prefHeight="285.0" />
+      <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="45.0" />
+      <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" />
+   </rowConstraints>
+   <children>
+    <Label text="All Library Members" GridPane.halignment="CENTER">
+         <padding>
+            <Insets left="20.0" top="20.0" />
+         </padding>
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" pickOnBounds="false" prefHeight="71.0" prefWidth="700.0" GridPane.rowIndex="5">
+         <children>
+            <TableView fx:id="statusTable" prefHeight="180.0" prefWidth="623.0" scaleShape="false">
+              <columns>
+                <TableColumn fx:id="memberIDCol" prefWidth="102.0" text="Member ID" />
+                  <TableColumn fx:id="firstNameCol" text="First Name" />
+                  <TableColumn fx:id="lastNameCol" prefWidth="75.0" text="Last Name" />
+                  <TableColumn fx:id="telephoneCol" prefWidth="119.0" text="Telephone" />
+                  <TableColumn fx:id="addressCol" prefWidth="246.0" text="Address" />
+              </columns>
+            </TableView>
+         </children>
+      </HBox>
+      <Button fx:id="backBtn" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="134.0" text="&lt;= Back to Main" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="40.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="showBtn" mnemonicParsing="false" onAction="#showAllMembersAction" text="Show" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets left="608.0" />
+         </GridPane.margin>
+      </Button>
+   </children>
+</GridPane>

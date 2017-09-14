@@ -7,8 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class AuthorsWindow extends Stage implements LibWindow {
-	public static final AuthorsWindow INSTANCE = new AuthorsWindow();
+public class AddAuthorsWindow extends Stage implements LibWindow {
+	public static final AddAuthorsWindow INSTANCE = new AddAuthorsWindow();
     private GridPane rootLayout;
 	private boolean isInitialized = false;
 	public boolean isInitialized() {
@@ -18,12 +18,12 @@ public class AuthorsWindow extends Stage implements LibWindow {
 		isInitialized = val;
 	}
 
-	private AuthorsWindow() {}
+	private AddAuthorsWindow() {}
 
 	public void init() {
 		try{
 			FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(AuthorsWindow.class.getResource("/ui/AuthorList.fxml"));
+            loader.setLocation(AddAuthorsWindow.class.getResource("/ui/AuthorList.fxml"));
             rootLayout = (GridPane) loader.load();
 
             // Show the scene containing the root layout.

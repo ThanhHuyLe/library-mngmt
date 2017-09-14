@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<GridPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="rootLayout" prefHeight="450.0" prefWidth="700.0" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.MemberRecordController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -18,9 +18,13 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
       <RowConstraints />
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="180.0" />
+      <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" />
    </rowConstraints>
    <children>
-   <Label text="Check Member Record">
+    <Label text="Print Member Record" GridPane.halignment="CENTER">
          <padding>
             <Insets left="20.0" top="20.0" />
          </padding>
@@ -42,33 +46,40 @@
             <Insets left="60.0" right="40.0" top="20.0" />
          </padding>
          <children>
-            <Label text="Member ID" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+            <Label prefHeight="27.0" prefWidth="102.0" text="Member ID" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="3" />
+            <TextField fx:id="memberIDText" GridPane.columnIndex="3" />
          </children>
       </GridPane>
-      <Button mnemonicParsing="false" text="Reset" GridPane.rowIndex="4">
+      <Button fx:id="reset" mnemonicParsing="false" text="Reset" GridPane.rowIndex="4">
          <GridPane.margin>
-            <Insets left="610.0" />
+            <Insets left="615.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" text="Print in Console" GridPane.rowIndex="4">
+      <Button fx:id="checkBtn" mnemonicParsing="false" onAction="#printRecordAction" text="Print Record" GridPane.rowIndex="4">
          <GridPane.margin>
-            <Insets left="470.0" />
+            <Insets left="500.0" />
          </GridPane.margin>
       </Button>
-      <HBox alignment="CENTER" maxHeight="400.0" prefHeight="400.0" prefWidth="700.0" GridPane.rowIndex="5">
+      <HBox alignment="CENTER" pickOnBounds="false" prefHeight="71.0" prefWidth="700.0" GridPane.rowIndex="6">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+            <TableView fx:id="statusTable" prefHeight="180.0" prefWidth="623.0" scaleShape="false">
+              <columns>
+                <TableColumn fx:id="isbnCol" prefWidth="190.0" text="ISBN" />
+                  <TableColumn fx:id="checkoutDateCol" prefWidth="198.0" text="Checkout Date" />
+                  <TableColumn fx:id="dueDateCol" prefWidth="234.0" text="Due Date" />
+              </columns>
+            </TableView>
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="&lt;= Back to Main" GridPane.rowIndex="4">
+      <Button fx:id="backBtn" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="134.0" text="&lt;= Back to Main" GridPane.rowIndex="4">
          <GridPane.margin>
-            <Insets left="20.0" />
+            <Insets left="40.0" />
          </GridPane.margin>
       </Button>
+      <Text fx:id="statusCheckout" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
    </children>
 </GridPane>

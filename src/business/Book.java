@@ -115,7 +115,13 @@ final public class Book implements Serializable {
 		return maxCheckoutLength;
 	}
 
-
+	public String authorsToString() {
+		String result = "";
+		for (Author author: authors) {
+			result += author.getFirstName() + " " + author.getLastName() + ", ";
+		}
+		return result.substring(0, result.length()-3);
+	}
 
 
 

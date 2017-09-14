@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<GridPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="rootLayout" prefHeight="450.0" prefWidth="700.0" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.BookStatusController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -18,16 +18,21 @@
       <RowConstraints />
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="180.0" />
+      <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="60.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" />
    </rowConstraints>
    <children>
-     <!--  <Label text="Show Book Status">
+    <Label text="Book Status" GridPane.halignment="CENTER">
          <padding>
             <Insets left="20.0" top="20.0" />
          </padding>
          <font>
             <Font size="36.0" />
          </font>
-      </Label> -->
+      </Label>
       <GridPane prefHeight="93.0" prefWidth="700.0" GridPane.rowIndex="2">
         <columnConstraints>
           <ColumnConstraints />
@@ -42,42 +47,64 @@
             <Insets left="60.0" right="40.0" top="20.0" />
          </padding>
          <children>
-            <Label text="ISBN" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+            <Label prefHeight="27.0" prefWidth="102.0" text="Book ISBN" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="3" />
+            <TextField fx:id="isbnText" GridPane.columnIndex="3" />
          </children>
       </GridPane>
-      <Button mnemonicParsing="false" text="Reset" GridPane.rowIndex="3">
+      <Button fx:id="reset" mnemonicParsing="false" text="Reset" GridPane.rowIndex="3">
          <GridPane.margin>
-            <Insets left="610.0" />
+            <Insets left="607.0" />
          </GridPane.margin>
       </Button>
-      <Button mnemonicParsing="false" text="Search" GridPane.rowIndex="3">
+      <Button fx:id="checkBtn" mnemonicParsing="false" onAction="#showBookStatusAction" text="Print Book Status" GridPane.rowIndex="3">
          <GridPane.margin>
-            <Insets left="520.0" />
+            <Insets left="465.0" />
          </GridPane.margin>
       </Button>
-      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
-        <columns>
-          <TableColumn prefWidth="297.0" text="Field" />
-          <TableColumn minWidth="0.0" prefWidth="401.0" text="Value" />
-        </columns>
-      </TableView>
-      <Label text="Book Status" GridPane.rowIndex="4">
-         <font>
-            <Font size="18.0" />
-         </font>
+      <HBox alignment="CENTER" pickOnBounds="false" prefHeight="71.0" prefWidth="700.0" GridPane.rowIndex="7">
+         <children>
+            <TableView fx:id="BookStatusTable" prefHeight="180.0" prefWidth="623.0" scaleShape="false">
+              <columns>
+                  <TableColumn fx:id="memberCol" prefWidth="295.0" text="Member Borrowed" />
+                  <TableColumn fx:id="dueDateCol" prefWidth="327.0" text="Due Date" />
+              </columns>
+            </TableView>
+         </children>
+      </HBox>
+      <Button fx:id="backBtn" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="134.0" text="&lt;= Back to Main" GridPane.rowIndex="3">
          <GridPane.margin>
-            <Insets left="20.0" />
-         </GridPane.margin>
-      </Label>
-      <Button mnemonicParsing="false" text="&lt;= Back to Main" GridPane.rowIndex="3">
-         <GridPane.margin>
-            <Insets left="20.0" />
+            <Insets left="40.0" />
          </GridPane.margin>
       </Button>
+      <Text fx:id="statusCheckout" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <GridPane GridPane.rowIndex="5">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="ISBN  " GridPane.halignment="RIGHT" />
+            <Label text="Book Title   " GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+            <Label text="Copy Numbers  " GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
+            <TextField fx:id="bookISBNText" GridPane.columnIndex="1" />
+            <TextField fx:id="titleText" GridPane.columnIndex="3" />
+            <TextField fx:id="copyNumbersText" GridPane.columnIndex="5">
+               <GridPane.margin>
+                  <Insets right="40.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+      </GridPane>
    </children>
 </GridPane>

@@ -109,6 +109,66 @@ public class SystemController implements ControllerInterface {
 	}
 
 	@Override
+	public List<RecordEntry> getMemberRecord(String id) throws LibrarySystemException {
+		DataAccess da = new DataAccessFacade();
+		List<String> retval = new ArrayList<String>();
+		retval.addAll(da.readMemberMap().keySet());
+		if (!retval.contains(id))
+			throw new LibrarySystemException("Member ID is not found");
+		LibraryMember member = da.readMemberMap().get(id);
+		return member.getRecord();
+	}
+
+	@Override
+	public List<RecordEntry> getBookStatus(String isbn) throws LibrarySystemException {
+		DataAccess da = new DataAccessFacade();
+		List<String> retval = new ArrayList<String>();
+		retval.addAll(da.readBooksMap().keySet());
+		if (!retval.contains(isbn))
+			throw new LibrarySystemException("The book with isbn " + isbn + " is not available");
+		retval.removeAll(da.readBooksMap().keySet());
+		retval.addAll(da.readMemberMap().keySet());
+		List<RecordEntry> record = new ArrayList<RecordEntry>();
+		for (String id: retval) {
+			LibraryMember member = da.readMemberMap().get(id);
+			List<RecordEntry> temp = member.getRecord();
+			for (RecordEntry rec: temp) {
+				if (rec.getIsbn().equals(isbn)) {
+					record.add(rec);
+				}
+			}
+		}
+		return record;
+	}
+
+	@Override
+	public List<LibraryMember> getAllMembers() throws LibrarySystemException {
+		DataAccess da = new DataAccessFacade();
+		List<String> retval = new ArrayList<String>();
+		retval.addAll(da.readMemberMap().keySet());
+		List<LibraryMember> result = new ArrayList<LibraryMember>();
+		for (String id: retval) {
+			result.add(da.readMemberMap().get(id));
+		}
+		return result;
+	}
+
+	@Override
+	public List<BookInfo> getAllBooks() throws LibrarySystemException {
+		DataAccess da = new DataAccessFacade();
+		List<String> retval = new ArrayList<String>();
+		retval.addAll(da.readBooksMap().keySet());
+		List<BookInfo> result = new ArrayList<BookInfo>();
+		for (String isbn: retval) {
+			Book book = da.readBooksMap().get(isbn);
+			result.add(new BookInfo(book.getIsbn(), book.getTitle(), Integer.toString(book.getMaxCheckoutLength()),
+					book.authorsToString(), Integer.toString(book.getCopyNums().size())));
+		}
+		return result;
+	}
+
+
+	@Override
 	public void addMember(LibraryMember member) {
 		DataAccess da = new DataAccessFacade();
 		da.saveNewMember(member);

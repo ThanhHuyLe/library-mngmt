@@ -6,9 +6,6 @@ final public class Author extends Person implements Serializable {
 	private String authorId;
 	private String bio;
 
-	public String getBio() {
-		return bio;
-	}
 
 	public String getAuthorId() {
 		return authorId;

@@ -25,14 +25,16 @@ public class TestData {
 			add(new Address("501 Central", "Mountain View", "CA", "94707"));
 		}
 	};
+
+
 	@SuppressWarnings("serial")
 	public List<Author> allAuthors = new ArrayList<Author>() {
 		{
-			add(new Author("auth-1","Joe", "Thomas", "641-445-2123", addresses.get(0), "A happy man is he."));
-			add(new Author("auth-2","Sandra", "Thomas", "641-445-2123", addresses.get(0), "A happy wife is she."));
-			add(new Author("auth-3","Nirmal", "Pugh", "641-919-3223", addresses.get(1), "Thinker of thoughts."));
-			add(new Author("auth-4","Andrew", "Cleveland", "976-445-2232", addresses.get(2), "Author of childrens' books."));
-			add(new Author("auth-5","Sarah", "Connor", "123-422-2663", addresses.get(3), "Known for her clever style."));
+			add(new Author("1","Joe", "Thomas", "641-445-2123", addresses.get(0), "A happy man is he."));
+			add(new Author("2","Sandra", "Thomas", "641-445-2123", addresses.get(0), "A happy wife is she."));
+			add(new Author("3","Nirmal", "Pugh", "641-919-3223", addresses.get(1), "Thinker of thoughts."));
+			add(new Author("4","Andrew", "Cleveland", "976-445-2232", addresses.get(2), "Author of childrens' books."));
+			add(new Author("5","Sarah", "Connor", "123-422-2663", addresses.get(3), "Known for her clever style."));
 		}
 	};
 
@@ -69,6 +71,7 @@ public class TestData {
 		DataAccess da = new DataAccessFacade();
 		System.out.println(da.readBooksMap());
 		System.out.println(da.readUserMap());
+		System.out.println(da.readAuthorMap());
 	}
 	///create books
 	public void bookData() {

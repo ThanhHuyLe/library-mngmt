@@ -4,16 +4,24 @@ import java.util.Collections;
 import java.util.List;
 
 import business.ControllerInterface;
+import business.LibraryMember;
+import business.LibrarySystemException;
 import business.SystemController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -25,6 +33,7 @@ import javafx.stage.Stage;
 
 
 public class Start extends Application {
+
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -40,10 +49,11 @@ public class Start extends Application {
 
 	private static Stage[] allWindows = {
 		LoginWindow.INSTANCE,
-		AllMembersWindow.INSTANCE,
+		AllBooksWindow.INSTANCE,
 		AllBooksWindow.INSTANCE,
 		AddBookWindow.INSTANCE,
 		AddMemberWindow.INSTANCE,
+		AddAuthorsWindow.INSTANCE,
 		AddCopyWindow.INSTANCE,
 		CheckoutBookWindow.INSTANCE,
 		CheckoutBookWindow.INSTANCE,
@@ -92,7 +102,8 @@ public class Start extends Application {
 		MenuItem book = new MenuItem("Book");
 		MenuItem member = new MenuItem("Member");
 		MenuItem copyOfBook = new MenuItem("Copy of Book");
-		addMenu.getItems().addAll(book, member, copyOfBook);
+		MenuItem author = new MenuItem("Author");
+		addMenu.getItems().addAll(book, member, copyOfBook, author);
 
 		Menu showMenu = new Menu("Show");
 		MenuItem bookStatus = new MenuItem("Book Status");
@@ -104,8 +115,6 @@ public class Start extends Application {
 		MenuItem bookAvailable = new MenuItem("Checkout Book");
 		MenuItem memberRecord = new MenuItem("Print Member Record");
 		checkMenu.getItems().addAll(bookAvailable, memberRecord);
-
-		Menu authorMenu = new Menu("Author");
 
 		logIn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -141,6 +150,18 @@ public class Start extends Application {
             }
         });
 
+		author.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+            	hideAllWindows();
+    			if(!AddAuthorsWindow.INSTANCE.isInitialized()) {
+    				AddAuthorsWindow.INSTANCE.init();
+    			}
+    			AddAuthorsWindow.INSTANCE.show();
+            }
+        });
+
+
 		copyOfBook.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -171,14 +192,7 @@ public class Start extends Application {
 				if(!AllBooksWindow.INSTANCE.isInitialized()) {
 					AllBooksWindow.INSTANCE.init();
 				}
-				ControllerInterface ci = new SystemController();
-				List<String> ids = ci.allBookIds();
-				Collections.sort(ids);
-				StringBuilder sb = new StringBuilder();
-				for(String s: ids) {
-					sb.append(s + "\n");
-				}
-				AllBooksWindow.INSTANCE.setData(sb.toString());
+
 				AllBooksWindow.INSTANCE.show();
             }
 		});
@@ -190,16 +204,7 @@ public class Start extends Application {
 				if(!AllMembersWindow.INSTANCE.isInitialized()) {
 					AllMembersWindow.INSTANCE.init();
 				}
-				ControllerInterface ci = new SystemController();
-				List<String> ids = ci.allMemberIds();
-				Collections.sort(ids);
-				//System.out.println(ids);
-				StringBuilder sb = new StringBuilder();
-				for(String s: ids) {
-					sb.append(s + "\n");
-				}
-				//System.out.println(sb.toString());
-				AllMembersWindow.INSTANCE.setData(sb.toString());
+
 				AllMembersWindow.INSTANCE.show();
             }
 		});
@@ -226,7 +231,7 @@ public class Start extends Application {
             }
         });
 
-		mainMenu.getMenus().addAll(authenticationMenu, addMenu, showMenu, checkMenu, authorMenu);
+		mainMenu.getMenus().addAll(authenticationMenu, addMenu, showMenu, checkMenu);
 		Scene scene = new Scene(topContainer, 700, 550);
 		primaryStage.setScene(scene);
 		scene.getStylesheets().add(getClass().getResource("library.css").toExternalForm());

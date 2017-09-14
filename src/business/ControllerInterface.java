@@ -24,4 +24,12 @@ public interface ControllerInterface {
 	public List<Author> allAuthors();
 
 	public LibraryMember getMember(String memberId);
+
+	public List<RecordEntry> getMemberRecord(String id) throws LibrarySystemException;
+
+	public List<RecordEntry> getBookStatus(String isbn) throws LibrarySystemException;
+
+	public List<LibraryMember> getAllMembers() throws LibrarySystemException;
+
+	public List<BookInfo> getAllBooks() throws LibrarySystemException;
 }
