@@ -30,6 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 
 public class Start extends Application {
@@ -46,7 +47,10 @@ public class Start extends Application {
 		static Color green = Color.web("#034220");
 		static Color red = Color.FIREBRICK;
 	}
-
+	
+	private boolean isMenuCreated= false;
+	public static boolean isLogged = false;
+	
 	private static Stage[] allWindows = {
 		LoginWindow.INSTANCE,
 		AllBooksWindow.INSTANCE,
@@ -57,7 +61,8 @@ public class Start extends Application {
 		AddCopyWindow.INSTANCE,
 		CheckoutBookWindow.INSTANCE,
 		CheckoutBookWindow.INSTANCE,
-		CheckMemberRecordWindow.INSTANCE
+		CheckMemberRecordWindow.INSTANCE,
+		SelectAuthorsWindow.INSTANCE
 	};
 
 	public static void hideAllWindows() {
@@ -98,23 +103,7 @@ public class Start extends Application {
 		MenuItem logIn = new MenuItem("Login");
 		authenticationMenu.getItems().addAll(logIn);
 
-		Menu addMenu = new Menu("Add");
-		MenuItem book = new MenuItem("Book");
-		MenuItem member = new MenuItem("Member");
-		MenuItem copyOfBook = new MenuItem("Copy of Book");
-		MenuItem author = new MenuItem("Author");
-		addMenu.getItems().addAll(book, member, copyOfBook, author);
-
-		Menu showMenu = new Menu("Show");
-		MenuItem bookStatus = new MenuItem("Book Status");
-		MenuItem allBooks = new MenuItem("All Books");
-		MenuItem allMembers = new MenuItem("All Members");
-		showMenu.getItems().addAll(bookStatus, allBooks, allMembers);
-
-		Menu checkMenu = new Menu("Implement");
-		MenuItem bookAvailable = new MenuItem("Checkout Book");
-		MenuItem memberRecord = new MenuItem("Print Member Record");
-		checkMenu.getItems().addAll(bookAvailable, memberRecord);
+		
 
 		logIn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -127,111 +116,154 @@ public class Start extends Application {
     			LoginWindow.INSTANCE.show();
             }
         });
+		primaryStage.addEventHandler(WindowEvent.WINDOW_SHOWN, new EventHandler<WindowEvent>() {
+			@Override
+			public void handle(WindowEvent window) {
+				if (isLogged && !isMenuCreated) {
+					Menu addMenu = new Menu("Add");
+					MenuItem book = new MenuItem("Book");
+					MenuItem member = new MenuItem("Member");
+					MenuItem copyOfBook = new MenuItem("Copy of Book");
+					MenuItem author = new MenuItem("Author");
+					addMenu.getItems().addAll(book, member, copyOfBook, author);
 
-		book.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-            	hideAllWindows();
-    			if(!AddBookWindow.INSTANCE.isInitialized()) {
-    				AddBookWindow.INSTANCE.init();
-    			}
-    			AddBookWindow.INSTANCE.show();
-            }
-        });
+					Menu showMenu = new Menu("Show");
+					MenuItem bookStatus = new MenuItem("Book Status");
+					MenuItem allBooks = new MenuItem("All Books");
+					MenuItem allMembers = new MenuItem("All Members");
+					showMenu.getItems().addAll(bookStatus, allBooks, allMembers);
 
-		member.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-            	hideAllWindows();
-    			if(!AddMemberWindow.INSTANCE.isInitialized()) {
-    				AddMemberWindow.INSTANCE.init();
-    			}
-    			AddMemberWindow.INSTANCE.show();
-            }
-        });
+					Menu checkMenu = new Menu("Implement");
+					MenuItem bookAvailable = new MenuItem("Checkout Book");
+					MenuItem memberRecord = new MenuItem("Print Member Record");
+					checkMenu.getItems().addAll(bookAvailable, memberRecord);
+					
+					Menu logout = new Menu("Logout");
+					MenuItem logoutMenu = new MenuItem("Logout");
+					logout.getItems().addAll(logoutMenu);
+					
+					book.setOnAction(new EventHandler<ActionEvent>() {
+			            @Override
+			            public void handle(ActionEvent e) {
+			            	hideAllWindows();
+			    			if(!AddBookWindow.INSTANCE.isInitialized()) {
+			    				AddBookWindow.INSTANCE.init();
+			    			}
+			    			AddBookWindow.INSTANCE.show();
+			            }
+			        });
 
-		author.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-            	hideAllWindows();
-    			if(!AddAuthorsWindow.INSTANCE.isInitialized()) {
-    				AddAuthorsWindow.INSTANCE.init();
-    			}
-    			AddAuthorsWindow.INSTANCE.show();
-            }
-        });
+					member.setOnAction(new EventHandler<ActionEvent>() {
+			            @Override
+			            public void handle(ActionEvent e) {
+			            	hideAllWindows();
+			    			if(!AddMemberWindow.INSTANCE.isInitialized()) {
+			    				AddMemberWindow.INSTANCE.init();
+			    			}
+			    			AddMemberWindow.INSTANCE.show();
+			            }
+			        });
 
-
-		copyOfBook.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-            	hideAllWindows();
-    			if(!AddCopyWindow.INSTANCE.isInitialized()) {
-    				AddCopyWindow.INSTANCE.init();
-    			}
-    			AddCopyWindow.INSTANCE.show();
-            }
-        });
-
-		bookStatus.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-            	hideAllWindows();
-    			if(!ShowBookStatusWindow.INSTANCE.isInitialized()) {
-    				ShowBookStatusWindow.INSTANCE.init();
-    			}
-    			ShowBookStatusWindow.INSTANCE.show();
-            }
-        });
+					author.setOnAction(new EventHandler<ActionEvent>() {
+			            @Override
+			            public void handle(ActionEvent e) {
+			            	hideAllWindows();
+			    			if(!AddAuthorsWindow.INSTANCE.isInitialized()) {
+			    				AddAuthorsWindow.INSTANCE.init();
+			    			}
+			    			AddAuthorsWindow.INSTANCE.show();
+			            }
+			        });
 
 
-		allBooks.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-				hideAllWindows();
-				if(!AllBooksWindow.INSTANCE.isInitialized()) {
-					AllBooksWindow.INSTANCE.init();
+					copyOfBook.setOnAction(new EventHandler<ActionEvent>() {
+			            @Override
+			            public void handle(ActionEvent e) {
+			            	hideAllWindows();
+			    			if(!AddCopyWindow.INSTANCE.isInitialized()) {
+			    				AddCopyWindow.INSTANCE.init();
+			    			}
+			    			AddCopyWindow.INSTANCE.show();
+			            }
+			        });
+
+					bookStatus.setOnAction(new EventHandler<ActionEvent>() {
+			            @Override
+			            public void handle(ActionEvent e) {
+			            	hideAllWindows();
+			    			if(!ShowBookStatusWindow.INSTANCE.isInitialized()) {
+			    				ShowBookStatusWindow.INSTANCE.init();
+			    			}
+			    			ShowBookStatusWindow.INSTANCE.show();
+			            }
+			        });
+
+
+					allBooks.setOnAction(new EventHandler<ActionEvent>() {
+			            @Override
+			            public void handle(ActionEvent e) {
+							hideAllWindows();
+							if(!AllBooksWindow.INSTANCE.isInitialized()) {
+								AllBooksWindow.INSTANCE.init();
+							}
+
+							AllBooksWindow.INSTANCE.show();
+			            }
+					});
+
+					allMembers.setOnAction(new EventHandler<ActionEvent>() {
+			            @Override
+			            public void handle(ActionEvent e) {
+							hideAllWindows();
+							if(!AllMembersWindow.INSTANCE.isInitialized()) {
+								AllMembersWindow.INSTANCE.init();
+							}
+
+							AllMembersWindow.INSTANCE.show();
+			            }
+					});
+
+					bookAvailable.setOnAction(new EventHandler<ActionEvent>() {
+			            @Override
+			            public void handle(ActionEvent e) {
+			            	hideAllWindows();
+			    			if(!CheckoutBookWindow.INSTANCE.isInitialized()) {
+			    				CheckoutBookWindow.INSTANCE.init();
+			    			}
+			    			CheckoutBookWindow.INSTANCE.show();
+			            }
+			        });
+
+					memberRecord.setOnAction(new EventHandler<ActionEvent>() {
+			            @Override
+			            public void handle(ActionEvent e) {
+			            	hideAllWindows();
+			    			if(!CheckMemberRecordWindow.INSTANCE.isInitialized()) {
+			    				CheckMemberRecordWindow.INSTANCE.init();
+			    			}
+			    			CheckMemberRecordWindow.INSTANCE.show();
+			            }
+			        });
+					logoutMenu.setOnAction(new EventHandler<ActionEvent>() {
+						@Override
+						public void handle(ActionEvent e) {
+							hideAllWindows();
+							mainMenu.getMenus().clear();
+							mainMenu.getMenus().add(authenticationMenu);
+							isLogged = false;
+							isMenuCreated=false;
+							primaryStage.show();
+						}
+					});
+					mainMenu.getMenus().clear();
+					mainMenu.getMenus().addAll(addMenu, showMenu, checkMenu, logout);
+					isMenuCreated=true;
 				}
-
-				AllBooksWindow.INSTANCE.show();
-            }
-		});
-
-		allMembers.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-				hideAllWindows();
-				if(!AllMembersWindow.INSTANCE.isInitialized()) {
-					AllMembersWindow.INSTANCE.init();
 				}
+			});
+		
 
-				AllMembersWindow.INSTANCE.show();
-            }
-		});
-
-		bookAvailable.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-            	hideAllWindows();
-    			if(!CheckoutBookWindow.INSTANCE.isInitialized()) {
-    				CheckoutBookWindow.INSTANCE.init();
-    			}
-    			CheckoutBookWindow.INSTANCE.show();
-            }
-        });
-
-		memberRecord.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-            	hideAllWindows();
-    			if(!CheckMemberRecordWindow.INSTANCE.isInitialized()) {
-    				CheckMemberRecordWindow.INSTANCE.init();
-    			}
-    			CheckMemberRecordWindow.INSTANCE.show();
-            }
-        });
-
-		mainMenu.getMenus().addAll(authenticationMenu, addMenu, showMenu, checkMenu);
+		mainMenu.getMenus().add(authenticationMenu);
 		Scene scene = new Scene(topContainer, 700, 550);
 		primaryStage.setScene(scene);
 		scene.getStylesheets().add(getClass().getResource("library.css").toExternalForm());
