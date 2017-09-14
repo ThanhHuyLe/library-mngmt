@@ -171,8 +171,6 @@ public class DataAccessFacade implements DataAccess {
 		HashMap<String, Book> mems = readBooksMap();
 		String isbn = book.getIsbn();
 		mems.put(isbn, book);
-		System.out.println(book);
-		System.out.println(book.getAuthors());
 		saveToStorage(StorageType.BOOKS, mems);
 	}
 

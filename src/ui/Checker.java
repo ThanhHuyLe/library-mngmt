@@ -47,6 +47,10 @@ public class Checker {
 			throw new LibrarySystemException("All field must be non-empty!");
 		isbnRule(isbn);
 		isNumberic(maxCheckoutLength, "Max checkout length must be numberic");
+		if(!(maxCheckoutLength.equals("21") || maxCheckoutLength.equals("7")))
+		{
+			throw new LibrarySystemException("Max checkout length must be 21 or 7!");
+		}
 		isNumberic(copyNum, "Number of copies must be numberic!");
 	}
 
