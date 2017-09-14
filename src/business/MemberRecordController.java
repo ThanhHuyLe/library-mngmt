@@ -48,9 +48,15 @@ public class MemberRecordController implements Initializable { // notice this
 			isbnCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("isbn"));
 			checkoutDateCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("checkoutDate"));
 			dueDateCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("dueDate"));
-
 	        statusTable.setItems(data);
 	        statusCheckout.setText("");
+
+	        //Print console
+	        System.out.println("Member ID: "+id);
+	        System.out.println("ISBN                    Checkout Date                    Due Date");
+	        for (RecordEntry rec: record) {
+	        	System.out.println(rec.getIsbn() + "                "+ rec.getCheckoutDate() + "                       "+rec.getDueDate());
+	        }
 		} catch (Exception e) {
 			statusCheckout.setText(e.getMessage());
 		}

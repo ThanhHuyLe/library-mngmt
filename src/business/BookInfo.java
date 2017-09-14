@@ -18,6 +18,7 @@ final public class BookInfo implements Serializable {
 	private String isbn;
 	private String title;
 	private String maxDay;
+
 	public BookInfo(String isbn, String title, String maxDay, String authors, String copies) {
 		this.setIsbn(isbn);
 		this.setTitle(title);
@@ -56,5 +57,4 @@ final public class BookInfo implements Serializable {
 	public void setMaxDay(String maxDay) {
 		this.maxDay = maxDay;
 	}
-
 }

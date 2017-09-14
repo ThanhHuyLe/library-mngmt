@@ -53,7 +53,7 @@ public class CheckoutBookWindow extends Stage implements LibWindow {
 		public void init() {
 			try{
     			FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(CheckoutBookWindow.class.getResource("/ui/checkBookAvailable.fxml"));
+	            loader.setLocation(CheckoutBookWindow.class.getResource("/ui/checkoutBook.fxml"));
 	            rootLayout = (GridPane) loader.load();
 
 	            // Show the scene containing the root layout.

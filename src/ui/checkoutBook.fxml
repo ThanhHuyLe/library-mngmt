@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<GridPane fx:controller="business.CheckoutController" fx:id="rootLayout" prefHeight="450.0" prefWidth="700.0" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="rootLayout" prefHeight="450.0" prefWidth="700.0" scaleShape="false" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.CheckoutController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -24,7 +24,7 @@
       <RowConstraints maxHeight="25.0" minHeight="0.0" prefHeight="0.0" />
    </rowConstraints>
    <children>
-    <Label text="Check Book Available" GridPane.halignment="CENTER">
+    <Label text="Checkout Book" GridPane.halignment="CENTER">
          <padding>
             <Insets left="20.0" top="20.0" />
          </padding>
@@ -83,7 +83,7 @@
             </TableView>
          </children>
       </HBox>
-      <Button fx:id="backBtn" mnemonicParsing="false" prefHeight="27.0" prefWidth="134.0" text="&lt;= Back to Main" GridPane.rowIndex="4" onAction="#back">
+      <Button fx:id="backBtn" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="134.0" text="&lt;= Back to Main" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets left="40.0" />
          </GridPane.margin>

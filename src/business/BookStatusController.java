@@ -30,6 +30,7 @@ public class BookStatusController implements Initializable { // notice this
     @FXML private TextField copyNumbersText;
     @FXML private TableColumn memberCol;
     @FXML private TableColumn dueDateCol;
+    @FXML private TableColumn statusCol;
     @FXML private TableView BookStatusTable;
 	@FXML private Text statusCheckout;
 
@@ -54,7 +55,7 @@ public class BookStatusController implements Initializable { // notice this
 	        final ObservableList<RecordEntry> data = FXCollections.observableArrayList(record);
 			memberCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("memberID"));
 			dueDateCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("dueDate"));
-
+			statusCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("status"));
 	        BookStatusTable.setItems(data);
 	        statusCheckout.setText("");
 		} catch (Exception e) {

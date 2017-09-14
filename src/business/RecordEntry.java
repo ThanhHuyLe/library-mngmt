@@ -12,12 +12,14 @@ public class RecordEntry implements Serializable{
 	private final String isbn;
 	private final LocalDate checkoutDate;
 	private final LocalDate dueDate;
+	public String status;
 
-	public RecordEntry(String memberID, String isbn, LocalDate checkoutDate, LocalDate dueDate) {
+	public RecordEntry(String memberID, String isbn, LocalDate checkoutDate, LocalDate dueDate, String status) {
 		this.memberID = memberID;
 		this.isbn = isbn;
 		this.checkoutDate = checkoutDate;
 		this.dueDate = dueDate;
+		this.status = status;
 	}
 
 	public String getMemberID() {
@@ -34,5 +36,13 @@ public class RecordEntry implements Serializable{
 
 	public LocalDate getDueDate() {
 		return dueDate;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

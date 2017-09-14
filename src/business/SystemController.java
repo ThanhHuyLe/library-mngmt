@@ -96,7 +96,7 @@ public class SystemController implements ControllerInterface {
 			throw new LibrarySystemException("The book with isbn " + isbn + " is not available");
 
 		RecordEntry newEntry = new RecordEntry(id, isbn, LocalDate.now(),
-				LocalDate.now().plusDays(book.getMaxCheckoutLength()));
+				LocalDate.now().plusDays(book.getMaxCheckoutLength()), "");
 		record.add(newEntry);
 		member.setRecord(record);
 		da.updateMember(member);
@@ -125,7 +125,7 @@ public class SystemController implements ControllerInterface {
 		List<String> retval = new ArrayList<String>();
 		retval.addAll(da.readBooksMap().keySet());
 		if (!retval.contains(isbn))
-			throw new LibrarySystemException("The book with isbn " + isbn + " is not available");
+			throw new LibrarySystemException("The book with isbn " + isbn + " does not exist");
 		retval.removeAll(da.readBooksMap().keySet());
 		retval.addAll(da.readMemberMap().keySet());
 		List<RecordEntry> record = new ArrayList<RecordEntry>();
@@ -134,6 +134,9 @@ public class SystemController implements ControllerInterface {
 			List<RecordEntry> temp = member.getRecord();
 			for (RecordEntry rec : temp) {
 				if (rec.getIsbn().equals(isbn)) {
+					if (rec.getDueDate().isBefore(LocalDate.now()))
+						rec.setStatus("Overdue");
+					else rec.setStatus("Not overdue");
 					record.add(rec);
 				}
 			}
