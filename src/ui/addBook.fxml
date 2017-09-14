@@ -24,14 +24,12 @@
             <Font size="18.0" fx:id="x1" />
           </font>
         </Label>
-        <TextField fx:id="maxCheckoutLength" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-        <Label font="$x1" text="Authors" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-        <Label font="$x1" text="Title" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-        <TextField fx:id="title" prefWidth="299.9998779296875" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-        <Label font="$x1" text="ISBN" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <TextField fx:id="isbn" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-        <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-        <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="300.0" GridPane.columnIndex="3" GridPane.margin="$x2" GridPane.rowIndex="3">
+         <Label font="$x1" text="ISBN" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+         <TextField fx:id="isbn" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+         <Label font="$x1" text="Title" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+         <TextField fx:id="title" prefWidth="299.9998779296875" GridPane.columnIndex="3" GridPane.rowIndex="2" />    
+         <Label font="$x1" text="Authors" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+         <HBox alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="300.0" GridPane.columnIndex="3" GridPane.margin="$x2" GridPane.rowIndex="3">
           <children>
             <TextField id="author" fx:id="authors" editable="false" prefWidth="236.0">
               <HBox.margin>
@@ -45,8 +43,11 @@
             </Button>
           </children>
         </HBox>
+        <TextField fx:id="maxCheckoutLength" GridPane.columnIndex="3" GridPane.rowIndex="4" />
         <Label font="$x1" text="Number of copies" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-        <TextField id="maxCheckoutLength" fx:id="copyNum" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+        <TextField fx:id="copyNum" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+         
+          <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="0" />
         <Label prefHeight="29.0" prefWidth="196.0" GridPane.columnIndex="3" GridPane.halignment="RIGHT">
           <font>
             <Font size="24.0" />
@@ -72,14 +73,14 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <Button mnemonicParsing="false" onAction="#resetBook" text="Reset" GridPane.rowIndex="3">
-      <GridPane.margin>
-        <Insets left="610.0" />
-      </GridPane.margin>
-    </Button>
     <Button mnemonicParsing="false" onAction="#addBook" text="  Add  " GridPane.rowIndex="3">
       <GridPane.margin>
         <Insets left="520.0" />
+      </GridPane.margin>
+    </Button>
+     <Button mnemonicParsing="false" onAction="#resetBook" text="Reset" GridPane.rowIndex="3">
+      <GridPane.margin>
+        <Insets left="610.0" />
       </GridPane.margin>
     </Button>
     <Button mnemonicParsing="false" onAction="#back" text="&lt;= Back to Main" GridPane.rowIndex="3">
