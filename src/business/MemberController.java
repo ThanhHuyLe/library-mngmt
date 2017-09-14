@@ -54,8 +54,9 @@ public class MemberController {
 			msg.setFill(Color.GREEN);
 			msg.setText("New library member added successfully!");
 		} catch (LibrarySystemException e) {
-			msg.setFill(Color.RED);
+			//msg.setFill(Color.RED);
 			msg.setText(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
