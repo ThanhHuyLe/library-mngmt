@@ -88,7 +88,6 @@ public class LoginWindow extends Stage implements LibWindow {
 					ControllerInterface c = new SystemController();
 					c.login(userTextField.getText().trim(), pwBox.getText().trim());
 					messageBar.setFill(Start.Colors.green);
-					Start.isLogged = true;
 					Start.hideAllWindows();
 					Start.primStage().show();
 					messageBar.setText("Login successful");

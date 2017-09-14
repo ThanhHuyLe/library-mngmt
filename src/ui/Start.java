@@ -7,6 +7,7 @@ import business.ControllerInterface;
 import business.LibraryMember;
 import business.LibrarySystemException;
 import business.SystemController;
+import dataaccess.Auth;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,10 +48,9 @@ public class Start extends Application {
 		static Color green = Color.web("#034220");
 		static Color red = Color.FIREBRICK;
 	}
-	
+
 	private boolean isMenuCreated= false;
-	public static boolean isLogged = false;
-	
+
 	private static Stage[] allWindows = {
 		LoginWindow.INSTANCE,
 		AllBooksWindow.INSTANCE,
@@ -103,7 +103,7 @@ public class Start extends Application {
 		MenuItem logIn = new MenuItem("Login");
 		authenticationMenu.getItems().addAll(logIn);
 
-		
+
 
 		logIn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -119,14 +119,59 @@ public class Start extends Application {
 		primaryStage.addEventHandler(WindowEvent.WINDOW_SHOWN, new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent window) {
-				if (isLogged && !isMenuCreated) {
-					Menu addMenu = new Menu("Add");
-					MenuItem book = new MenuItem("Book");
-					MenuItem member = new MenuItem("Member");
-					MenuItem copyOfBook = new MenuItem("Copy of Book");
-					MenuItem author = new MenuItem("Author");
-					addMenu.getItems().addAll(book, member, copyOfBook, author);
+				if (SystemController.currentAuth != null && !isMenuCreated) {
+					mainMenu.getMenus().clear();
+					if (SystemController.currentAuth == Auth.ADMIN || SystemController.currentAuth == Auth.BOTH) {
+						Menu addMenu = new Menu("Add");
+						MenuItem book = new MenuItem("Book");
+						MenuItem member = new MenuItem("Member");
+						MenuItem copyOfBook = new MenuItem("Copy of Book");
+						// MenuItem author = new MenuItem("Author");
+						addMenu.getItems().addAll(book, member, copyOfBook);
+						mainMenu.getMenus().add(addMenu);
+						book.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								hideAllWindows();
+								if (!AddBookWindow.INSTANCE.isInitialized()) {
+									AddBookWindow.INSTANCE.init();
+								}
+								AddBookWindow.INSTANCE.show();
+							}
+						});
 
+						member.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								hideAllWindows();
+								if (!AddMemberWindow.INSTANCE.isInitialized()) {
+									AddMemberWindow.INSTANCE.init();
+								}
+								AddMemberWindow.INSTANCE.show();
+							}
+						});
+
+						/*
+						 * author.setOnAction(new EventHandler<ActionEvent>() {
+						 *
+						 * @Override public void handle(ActionEvent e) {
+						 * hideAllWindows();
+						 * if(!AddAuthorsWindow.INSTANCE.isInitialized()) {
+						 * AddAuthorsWindow.INSTANCE.init(); }
+						 * AddAuthorsWindow.INSTANCE.show(); } });
+						 */
+
+						copyOfBook.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								hideAllWindows();
+								if (!AddCopyWindow.INSTANCE.isInitialized()) {
+									AddCopyWindow.INSTANCE.init();
+								}
+								AddCopyWindow.INSTANCE.show();
+							}
+						});
+					}
 					Menu showMenu = new Menu("Show");
 					MenuItem bookStatus = new MenuItem("Book Status");
 					MenuItem allBooks = new MenuItem("All Books");
@@ -134,134 +179,89 @@ public class Start extends Application {
 					showMenu.getItems().addAll(bookStatus, allBooks, allMembers);
 
 					Menu checkMenu = new Menu("Implement");
-					MenuItem bookAvailable = new MenuItem("Checkout Book");
+					if (SystemController.currentAuth.equals(Auth.LIBRARIAN)
+							|| SystemController.currentAuth.equals(Auth.BOTH)) {
+						MenuItem bookAvailable = new MenuItem("Checkout Book");
+						checkMenu.getItems().add(bookAvailable);
+						bookAvailable.setOnAction(new EventHandler<ActionEvent>() {
+							@Override
+							public void handle(ActionEvent e) {
+								hideAllWindows();
+								if (!CheckoutBookWindow.INSTANCE.isInitialized()) {
+									CheckoutBookWindow.INSTANCE.init();
+								}
+								CheckoutBookWindow.INSTANCE.show();
+							}
+						});
+					}
 					MenuItem memberRecord = new MenuItem("Print Member Record");
-					checkMenu.getItems().addAll(bookAvailable, memberRecord);
-					
+					checkMenu.getItems().add(memberRecord);
 					Menu logout = new Menu("Logout");
 					MenuItem logoutMenu = new MenuItem("Logout");
 					logout.getItems().addAll(logoutMenu);
-					
-					book.setOnAction(new EventHandler<ActionEvent>() {
-			            @Override
-			            public void handle(ActionEvent e) {
-			            	hideAllWindows();
-			    			if(!AddBookWindow.INSTANCE.isInitialized()) {
-			    				AddBookWindow.INSTANCE.init();
-			    			}
-			    			AddBookWindow.INSTANCE.show();
-			            }
-			        });
-
-					member.setOnAction(new EventHandler<ActionEvent>() {
-			            @Override
-			            public void handle(ActionEvent e) {
-			            	hideAllWindows();
-			    			if(!AddMemberWindow.INSTANCE.isInitialized()) {
-			    				AddMemberWindow.INSTANCE.init();
-			    			}
-			    			AddMemberWindow.INSTANCE.show();
-			            }
-			        });
-
-					author.setOnAction(new EventHandler<ActionEvent>() {
-			            @Override
-			            public void handle(ActionEvent e) {
-			            	hideAllWindows();
-			    			if(!AddAuthorsWindow.INSTANCE.isInitialized()) {
-			    				AddAuthorsWindow.INSTANCE.init();
-			    			}
-			    			AddAuthorsWindow.INSTANCE.show();
-			            }
-			        });
-
-
-					copyOfBook.setOnAction(new EventHandler<ActionEvent>() {
-			            @Override
-			            public void handle(ActionEvent e) {
-			            	hideAllWindows();
-			    			if(!AddCopyWindow.INSTANCE.isInitialized()) {
-			    				AddCopyWindow.INSTANCE.init();
-			    			}
-			    			AddCopyWindow.INSTANCE.show();
-			            }
-			        });
 
 					bookStatus.setOnAction(new EventHandler<ActionEvent>() {
-			            @Override
-			            public void handle(ActionEvent e) {
-			            	hideAllWindows();
-			    			if(!ShowBookStatusWindow.INSTANCE.isInitialized()) {
-			    				ShowBookStatusWindow.INSTANCE.init();
-			    			}
-			    			ShowBookStatusWindow.INSTANCE.show();
-			            }
-			        });
-
+						@Override
+						public void handle(ActionEvent e) {
+							hideAllWindows();
+							if (!ShowBookStatusWindow.INSTANCE.isInitialized()) {
+								ShowBookStatusWindow.INSTANCE.init();
+							}
+							ShowBookStatusWindow.INSTANCE.show();
+						}
+					});
 
 					allBooks.setOnAction(new EventHandler<ActionEvent>() {
-			            @Override
-			            public void handle(ActionEvent e) {
+						@Override
+						public void handle(ActionEvent e) {
 							hideAllWindows();
-							if(!AllBooksWindow.INSTANCE.isInitialized()) {
+							if (!AllBooksWindow.INSTANCE.isInitialized()) {
 								AllBooksWindow.INSTANCE.init();
 							}
 
 							AllBooksWindow.INSTANCE.show();
-			            }
+						}
 					});
 
 					allMembers.setOnAction(new EventHandler<ActionEvent>() {
-			            @Override
-			            public void handle(ActionEvent e) {
+						@Override
+						public void handle(ActionEvent e) {
 							hideAllWindows();
-							if(!AllMembersWindow.INSTANCE.isInitialized()) {
+							if (!AllMembersWindow.INSTANCE.isInitialized()) {
 								AllMembersWindow.INSTANCE.init();
 							}
 
 							AllMembersWindow.INSTANCE.show();
-			            }
+						}
 					});
 
-					bookAvailable.setOnAction(new EventHandler<ActionEvent>() {
-			            @Override
-			            public void handle(ActionEvent e) {
-			            	hideAllWindows();
-			    			if(!CheckoutBookWindow.INSTANCE.isInitialized()) {
-			    				CheckoutBookWindow.INSTANCE.init();
-			    			}
-			    			CheckoutBookWindow.INSTANCE.show();
-			            }
-			        });
-
 					memberRecord.setOnAction(new EventHandler<ActionEvent>() {
-			            @Override
-			            public void handle(ActionEvent e) {
-			            	hideAllWindows();
-			    			if(!CheckMemberRecordWindow.INSTANCE.isInitialized()) {
-			    				CheckMemberRecordWindow.INSTANCE.init();
-			    			}
-			    			CheckMemberRecordWindow.INSTANCE.show();
-			            }
-			        });
+						@Override
+						public void handle(ActionEvent e) {
+							hideAllWindows();
+							if (!CheckMemberRecordWindow.INSTANCE.isInitialized()) {
+								CheckMemberRecordWindow.INSTANCE.init();
+							}
+							CheckMemberRecordWindow.INSTANCE.show();
+						}
+					});
 					logoutMenu.setOnAction(new EventHandler<ActionEvent>() {
 						@Override
 						public void handle(ActionEvent e) {
 							hideAllWindows();
 							mainMenu.getMenus().clear();
 							mainMenu.getMenus().add(authenticationMenu);
-							isLogged = false;
-							isMenuCreated=false;
+							SystemController.currentAuth = null;
+							isMenuCreated = false;
 							primaryStage.show();
 						}
 					});
-					mainMenu.getMenus().clear();
-					mainMenu.getMenus().addAll(addMenu, showMenu, checkMenu, logout);
-					isMenuCreated=true;
+					mainMenu.getMenus().addAll(showMenu, checkMenu, logout);
+					isMenuCreated = true;
 				}
-				}
+			}
 			});
-		
+
 
 		mainMenu.getMenus().add(authenticationMenu);
 		Scene scene = new Scene(topContainer, 700, 550);

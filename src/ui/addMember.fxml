@@ -25,6 +25,8 @@
             <Font size="18.0" fx:id="x1" />
           </font>
         </Label>
+          <Label font="$x1" text="Member ID" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+        <TextField fx:id="memberId" GridPane.columnIndex="4" GridPane.rowIndex="1" />
         <TextField fx:id="fname" GridPane.columnIndex="4" GridPane.rowIndex="2" />
         <Label font="$x1" text="Last Name" GridPane.columnIndex="2" GridPane.rowIndex="3" />
         <Label font="$x1" text="Street" GridPane.columnIndex="2" GridPane.rowIndex="4" />
@@ -38,8 +40,6 @@
         <TextField fx:id="state" GridPane.columnIndex="4" GridPane.rowIndex="6" />
         <TextField fx:id="zip" GridPane.columnIndex="4" GridPane.rowIndex="7" />
         <TextField fx:id="tel" GridPane.columnIndex="4" GridPane.rowIndex="8" />
-        <Label font="$x1" text="Member ID" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <TextField fx:id="memberId" GridPane.columnIndex="4" GridPane.rowIndex="1" />
         <Text fx:id="msg" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="4" GridPane.rowIndex="0" />
       </children>
       <columnConstraints>
