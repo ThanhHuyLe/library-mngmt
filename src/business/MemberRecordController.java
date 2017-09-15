@@ -62,6 +62,12 @@ public class MemberRecordController implements Initializable { // notice this
 		}
 	 }
 
+	@FXML
+	protected void reset(ActionEvent evt) {
+		clear();
+	}
+
+
     @Override // and this
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

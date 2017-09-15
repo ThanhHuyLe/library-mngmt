@@ -55,14 +55,9 @@
             <TextField fx:id="isbnText" GridPane.columnIndex="3" />
          </children>
       </GridPane>
-      <Button fx:id="reset" mnemonicParsing="false" text="Reset" GridPane.rowIndex="3">
-         <GridPane.margin>
-            <Insets left="607.0" />
-         </GridPane.margin>
-      </Button>
       <Button fx:id="checkBtn" mnemonicParsing="false" onAction="#showBookStatusAction" text="Print Book Status" GridPane.rowIndex="3">
          <GridPane.margin>
-            <Insets left="465.0" />
+            <Insets left="535.0" />
          </GridPane.margin>
       </Button>
       <HBox alignment="CENTER" pickOnBounds="false" prefHeight="71.0" prefWidth="700.0" GridPane.rowIndex="7">

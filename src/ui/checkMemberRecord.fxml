@@ -54,14 +54,9 @@
             <TextField fx:id="memberIDText" GridPane.columnIndex="3" />
          </children>
       </GridPane>
-      <Button fx:id="reset" mnemonicParsing="false" text="Reset" GridPane.rowIndex="4">
-         <GridPane.margin>
-            <Insets left="615.0" />
-         </GridPane.margin>
-      </Button>
       <Button fx:id="checkBtn" mnemonicParsing="false" onAction="#printRecordAction" text="Print Record" GridPane.rowIndex="4">
          <GridPane.margin>
-            <Insets left="500.0" />
+            <Insets left="565.0" />
          </GridPane.margin>
       </Button>
       <HBox alignment="CENTER" pickOnBounds="false" prefHeight="71.0" prefWidth="700.0" GridPane.rowIndex="6">
