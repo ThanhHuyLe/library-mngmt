@@ -7,12 +7,15 @@ import java.io.Serializable;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import business.Author;
 import business.Book;
 import business.LibraryMember;
+import business.LibrarySystemException;
+import business.CheckoutRecord;
 
 public class DataAccessFacade implements DataAccess {
 
@@ -192,5 +195,34 @@ public class DataAccessFacade implements DataAccess {
 		String authorId = author.getAuthorId();
 		mems.put(authorId, author);
 		saveToStorage(StorageType.AUTHORS, mems);
+	}
+
+	@Override
+	public LibraryMember searchMember(String memberId) throws LibrarySystemException {
+		List<String> retval = new ArrayList<>();
+		retval.addAll(this.readMemberMap().keySet());
+		if (!retval.contains(memberId))
+			throw new LibrarySystemException("Member ID is not found");
+		return this.readMemberMap().get(memberId);
+	}
+
+	@Override
+	public Book searchBook(String isbn) throws LibrarySystemException {
+		List<String> retval = new ArrayList<>();
+		retval.addAll(this.readBooksMap().keySet());
+		if (!retval.contains(isbn))
+			throw new LibrarySystemException("The book with isbn " + isbn + " is not available");
+		return this.readBooksMap().get(isbn);
+	}
+
+	@Override
+	public boolean checkBorrow(LibraryMember member, Book book) throws LibrarySystemException {
+		boolean check = false;
+		List<CheckoutRecord> record = member.getRecord();
+		for (CheckoutRecord entry : record) {
+				if (entry.getIsbn().equals(book.getIsbn()))
+					check = true;
+		}
+		return check;
 	}
 }

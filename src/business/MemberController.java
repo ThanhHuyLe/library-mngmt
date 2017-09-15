@@ -40,7 +40,7 @@ public class MemberController {
 		try {
 
 			Address add = new Address(street.getText(), city.getText(), state.getText(), zip.getText());
-			List<RecordEntry> record = new ArrayList<RecordEntry>();
+			List<CheckoutRecord> record = new ArrayList<CheckoutRecord>();
 			Checker.addressValidation(add);
 			LibraryMember member = new LibraryMember(memberId.getText().trim(), fname.getText(), lname.getText(),
 					tel.getText(), add, record);

@@ -44,16 +44,16 @@ public class BookStatusController implements Initializable { // notice this
 		try {
 			ControllerInterface c = new SystemController();
 			String isbn = isbnText.getText();
-			List<RecordEntry> record = c.getBookStatus(isbn);
+			List<CheckoutRecord> record = c.getBookStatus(isbn);
 			DataAccess da = new DataAccessFacade();
 			Book book = da.readBooksMap().get(isbn);
 			bookISBNText.setText(isbn);
 			titleText.setText(book.getTitle());
 			copyNumbersText.setText(Integer.toString(book.getCopyNums().size()));
-	        final ObservableList<RecordEntry> data = FXCollections.observableArrayList(record);
-			memberCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("memberID"));
-			dueDateCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("dueDate"));
-			statusCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("status"));
+	        final ObservableList<CheckoutRecord> data = FXCollections.observableArrayList(record);
+			memberCol.setCellValueFactory(new PropertyValueFactory<CheckoutRecord, String>("memberID"));
+			dueDateCol.setCellValueFactory(new PropertyValueFactory<CheckoutRecord, String>("dueDate"));
+			statusCol.setCellValueFactory(new PropertyValueFactory<CheckoutRecord, String>("status"));
 	        BookStatusTable.setItems(data);
 	        statusCheckout.setText("");
 		} catch (Exception e) {

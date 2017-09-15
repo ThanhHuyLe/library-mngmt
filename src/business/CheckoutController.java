@@ -4,6 +4,9 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,10 +14,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 import ui.Start;
 
 
@@ -42,14 +47,13 @@ public class CheckoutController implements Initializable { // notice this
 			ControllerInterface c = new SystemController();
 			String id = memberIDText.getText();
 			String isbn = isbnText.getText();
-			List<RecordEntry> record = c.getBookAvailable(id, isbn);
-	        final ObservableList<RecordEntry> data = FXCollections.observableArrayList(record);
-			memberCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("memberID"));
-			isbnCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("isbn"));
-			checkoutDateCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("checkoutDate"));
-			dueDateCol.setCellValueFactory(new PropertyValueFactory<RecordEntry, String>("dueDate"));
-
-	        BookStatusTable.setItems(data);
+			List<CheckoutRecord> record = c.getBookAvailable(id, isbn);
+	        final ObservableList<CheckoutRecord> data = FXCollections.observableArrayList(record);
+			memberCol.setCellValueFactory(new PropertyValueFactory<CheckoutRecord, String>("memberID"));
+			isbnCol.setCellValueFactory(new PropertyValueFactory<CheckoutRecord, String>("isbn"));
+			checkoutDateCol.setCellValueFactory(new PropertyValueFactory<CheckoutRecord, String>("checkoutDate"));
+			dueDateCol.setCellValueFactory(new PropertyValueFactory<CheckoutRecord, String>("dueDate"));
+			BookStatusTable.setItems(data);
 	        statusCheckout.setText("");
 		} catch (Exception e) {
 			statusCheckout.setText(e.getMessage());

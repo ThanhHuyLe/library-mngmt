@@ -44,32 +44,21 @@ public class SystemController implements ControllerInterface {
 	}
 
 	@Override
-	public List<RecordEntry> getBookAvailable(String id, String isbn) throws LibrarySystemException {
+	public List<CheckoutRecord> getBookAvailable(String id, String isbn) throws LibrarySystemException {
 		DataAccess da = new DataAccessFacade();
-		List<String> retval = new ArrayList<>();
-		retval.addAll(da.readMemberMap().keySet());
-		if (!retval.contains(id))
-			throw new LibrarySystemException("Member ID is not found");
-		retval.addAll(da.readBooksMap().keySet());
-		LibraryMember member = da.readMemberMap().get(id);
-		List<RecordEntry> record = member.getRecord();
-		if (!retval.contains(isbn))
-			throw new LibrarySystemException("The book with isbn " + isbn + " is not available");
-		Book book = da.readBooksMap().get(isbn);
-		boolean memberBorrow = false;
-		for (RecordEntry entry : record) {
-			if (entry.getIsbn().equals(isbn))
-				memberBorrow = true;
+		LibraryMember member = da.searchMember(id);
+		Book book = da.searchBook(isbn);
+		boolean memberBorrow = da.checkBorrow(member, book);
+		List<CheckoutRecord> record = member.getRecord();
+		if (!memberBorrow) {
+			CheckoutEntry entry = new CheckoutEntry(LocalDate.now(),
+					LocalDate.now().plusDays(book.getMaxCheckoutLength()));
+			CheckoutRecord rec = new CheckoutRecord(id, isbn, entry.checkoutDate, entry.dueDate, 0, 0, "");
+			record.add(rec);
 		}
-		if (!book.isAvailable() || memberBorrow)
-			throw new LibrarySystemException("The book with isbn " + isbn + " is not available");
-
-		RecordEntry newEntry = new RecordEntry(id, isbn, LocalDate.now(),
-				LocalDate.now().plusDays(book.getMaxCheckoutLength()), "");
-		record.add(newEntry);
+		else throw new LibrarySystemException("Member with ID "+id+" has borrowed this book already");
 		member.setRecord(record);
 		da.updateMember(member);
-
 		BookCopy copy = book.getNextAvailableCopy();
 		copy.changeAvailability();
 		book.updateCopies(copy);
@@ -78,18 +67,14 @@ public class SystemController implements ControllerInterface {
 	}
 
 	@Override
-	public List<RecordEntry> getMemberRecord(String id) throws LibrarySystemException {
+	public List<CheckoutRecord> getMemberRecord(String id) throws LibrarySystemException {
 		DataAccess da = new DataAccessFacade();
-		List<String> retval = new ArrayList<String>();
-		retval.addAll(da.readMemberMap().keySet());
-		if (!retval.contains(id))
-			throw new LibrarySystemException("Member ID is not found");
-		LibraryMember member = da.readMemberMap().get(id);
+		LibraryMember member = da.searchMember(id);
 		return member.getRecord();
 	}
 
 	@Override
-	public List<RecordEntry> getBookStatus(String isbn) throws LibrarySystemException {
+	public List<CheckoutRecord> getBookStatus(String isbn) throws LibrarySystemException {
 		DataAccess da = new DataAccessFacade();
 		List<String> retval = new ArrayList<String>();
 		retval.addAll(da.readBooksMap().keySet());
@@ -97,11 +82,11 @@ public class SystemController implements ControllerInterface {
 			throw new LibrarySystemException("The book with isbn " + isbn + " does not exist");
 		retval.removeAll(da.readBooksMap().keySet());
 		retval.addAll(da.readMemberMap().keySet());
-		List<RecordEntry> record = new ArrayList<RecordEntry>();
+		List<CheckoutRecord> record = new ArrayList<CheckoutRecord>();
 		for (String id : retval) {
 			LibraryMember member = da.readMemberMap().get(id);
-			List<RecordEntry> temp = member.getRecord();
-			for (RecordEntry rec : temp) {
+			List<CheckoutRecord> temp = member.getRecord();
+			for (CheckoutRecord rec : temp) {
 				if (rec.getIsbn().equals(isbn)) {
 					if (rec.getDueDate().isBefore(LocalDate.now()))
 						rec.setStatus("Overdue");

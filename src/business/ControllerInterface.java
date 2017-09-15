@@ -11,7 +11,7 @@ public interface ControllerInterface {
 
 	public List<String> allBookIds();
 
-	public List<RecordEntry> getBookAvailable(String id, String isbn) throws LibrarySystemException;
+	public List<CheckoutRecord> getBookAvailable(String id, String isbn) throws LibrarySystemException;
 
 	public void addMember(LibraryMember member);
 
@@ -23,9 +23,9 @@ public interface ControllerInterface {
 
 	public LibraryMember getMember(String memberId);
 
-	public List<RecordEntry> getMemberRecord(String id) throws LibrarySystemException;
+	public List<CheckoutRecord> getMemberRecord(String id) throws LibrarySystemException;
 
-	public List<RecordEntry> getBookStatus(String isbn) throws LibrarySystemException;
+	public List<CheckoutRecord> getBookStatus(String isbn) throws LibrarySystemException;
 
 	public List<LibraryMember> getAllMembers() throws LibrarySystemException;
 
@@ -34,7 +34,7 @@ public interface ControllerInterface {
 	public void addAuthor(Author author);
 
 	public Author getAuthor(String authorId);
-	
+
 	public void addCopy(Book book, int num);
 
 }

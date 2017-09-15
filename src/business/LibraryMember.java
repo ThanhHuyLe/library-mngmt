@@ -7,8 +7,8 @@ import java.util.List;
 
 final public class LibraryMember extends Person implements Serializable {
 	private String memberId;
-	private List<RecordEntry> record = new ArrayList<RecordEntry>();
-	public LibraryMember(String memberId, String fname, String lname, String tel,Address add, List<RecordEntry> record) {
+	private List<CheckoutRecord> record = new ArrayList<CheckoutRecord>();
+	public LibraryMember(String memberId, String fname, String lname, String tel,Address add, List<CheckoutRecord> record) {
 		super(fname,lname, tel, add);
 		this.memberId = memberId;
 		this.record = record;
@@ -19,14 +19,14 @@ final public class LibraryMember extends Person implements Serializable {
 		return memberId;
 	}
 
-	public List<RecordEntry> getRecord() {
+	public List<CheckoutRecord> getRecord() {
 		if (record == null) {
-			record = new ArrayList<RecordEntry>();
+			record = new ArrayList<CheckoutRecord>();
 		}
 		return record;
 	}
 
-	public void setRecord(List<RecordEntry> record) {
+	public void setRecord(List<CheckoutRecord> record) {
 		this.record = record;
 	}
 
